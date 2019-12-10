@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-12-10 Tue 23:53 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blogging with emacs &amp; org-mode</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Blogging with emacs &amp; org-mode
+<br />
+<span class="subtitle">aka blogging using my personal note taking system. 2 birds 1 stone</span>
+</h1>
+
+<div id="outline-container-orgf572b7f" class="outline-2">
+<h2 id="orgf572b7f"><span class="section-number-2">1</span> Rationale</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+It's been around 3 years now (since 2016) that I'm using emacs, and mostly it was for the note taking in org-mode. I also wrote my thesis for my studies using org-mode. I think I spent quite a <b>lot</b> of time tweaking emacs/org-mode etc to manage this but at the end&#x2026; I learned some first things about emacs!
+</p>
+
+<p>
+Fast forward in 2019, I'm using emacs to learn/program in <code>Clojure</code>, so at the end learning emacs really paid off. :)
+But, I digress. This post is about the process to set up a blog using org-mode
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb8282e" class="outline-2">
+<h2 id="orgbb8282e"><span class="section-number-2">2</span> Exporting to html</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When you in an org-mode file just run
+</p>
+<ul class="org-ul">
+<li><code>org-html-export-to-html</code></li>
+</ul>
+
+<p>
+to get the html exported file
+</p>
+</div>
+<div id="outline-container-orge176cfd" class="outline-3">
+<h3 id="orge176cfd"><span class="section-number-3">2.1</span> Problem#1</h3>
+<div class="outline-text-3" id="text-2-1">
+<p class="verse">
+Please install htmlize from <a href="https://github.com/hniksic/emacs-htmlize">https://github.com/hniksic/emacs-htmlize</a><br />
+</p>
+
+<p>
+Solution
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #fb2874;">use-package</span> <span style="color: #fd971f;">htmlize</span>)
+</pre>
+</div>
+
+<p>
+Running again.. it works!
+</p>
+</div>
+</div>
+<div id="outline-container-org5383e6b" class="outline-3">
+<h3 id="org5383e6b"><span class="section-number-3">2.2</span> Problem#2</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+I use a package called <code>hideshowvis</code> to hide/show blocks/fuctions (aka collapsing/expanding a code block)
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #fb2874;">use-package</span> <span style="color: #fd971f;">hideshow-org</span>
+  <span style="color: #555556;">;; </span><span style="color: #555556;">https://github.com/shanecelis/hideshow-org</span>
+  <span style="color: #fd971f;">:load-path</span> <span style="color: #e2c770;">"elisp/"</span>
+  <span style="color: #fd971f;">:hook</span> (prog-mode . hs-org/minor-mode))
+
+(<span style="color: #fb2874;">use-package</span> <span style="color: #fd971f;">hideshowvis</span>
+  <span style="color: #555556;">;; </span><span style="color: #555556;">https://www.emacswiki.org/emacs/hideshowvis.el</span>
+  <span style="color: #fd971f;">:load-path</span> <span style="color: #e2c770;">"elisp/"</span>
+  <span style="color: #fd971f;">:hook</span> (prog-mode . hideshowvis-minor-mode))
+</pre>
+</div>
+
+<p>
+And, in my surprise, upon exporting some code blocks, the output would contain some weird things. For example, the above codeblock would look like
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">*hideshowvis*(<span style="color: #fb2874;">use-package</span> <span style="color: #fd971f;">hideshow-org</span>
+               <span style="color: #555556;">;; </span><span style="color: #555556;">https://github.com/shanecelis/hideshow-org</span>
+               <span style="color: #fd971f;">:load-path</span> <span style="color: #e2c770;">"elisp/"</span>
+               <span style="color: #fd971f;">:hook</span> (prog-mode . hs-org/minor-mode))
+
+*hideshowvis*(<span style="color: #fb2874;">use-package</span> <span style="color: #fd971f;">hideshowvis</span>
+               <span style="color: #555556;">;; </span><span style="color: #555556;">https://www.emacswiki.org/emacs/hideshowvis.el</span>
+               <span style="color: #fd971f;">:load-path</span> <span style="color: #e2c770;">"elisp/"</span>
+               <span style="color: #fd971f;">:hook</span> (prog-mode . hideshowvis-minor-mode))
+</pre>
+</div>
+
+<p>
+Upon googling, there is an issue in <a href="https://emacs.stackexchange.com/questions/50206/hideshowvis-text-shown-in-org-mode-source-code">stackoverflow</a> about this
+</p>
+
+<p>
+Solution
+</p>
+
+<p>
+In my configuration I add the <code>hideshowvis</code> in the prog-mode hook. I can see the hooks there
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">prog-mode-hook
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(rainbow-delimiters-mode hideshowvis-minor-mode hs-org/minor-mode show-paren-mode)
+</pre>
+</div>
+
+<p>
+So.. why not just disable all these hooks? :)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #fb2874;">let</span> ((prog-mode-hook nil))
+  (org-html-export-to-html))
+</pre>
+</div>
+
+<p>
+And it works! Wrapping it into a callable function
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">my-export-to-html</span> ()
+  (<span style="color: #fb2874;">interactive</span>)
+  (<span style="color: #fb2874;">let</span> ((prog-mode-hook nil))
+    (org-html-export-to-html)))
+</pre>
+</div>
+
+<p>
+By the way, this was my first stack overflow answer! :)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4b4a834" class="outline-2">
+<h2 id="org4b4a834"><span class="section-number-2">3</span> Styling it</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Found some ideas in <a href="https://github.com/gongzhitaao/orgcss">https://github.com/gongzhitaao/orgcss</a> about styling. It's a work in progress though :)
+</p>
+
+<p>
+The gist:
+</p>
+<ul class="org-ul">
+<li><p>
+add the following header in the org document
+</p>
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #7f7f80;">#+HTML_HEAD: &lt;link rel="stylesheet" type="text/css" href="style.css"/&gt;</span>
+</pre>
+</div></li>
+<li><p>
+an example <code>style.css</code> file
+</p>
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #b6e63e;">pre.src </span>{
+    <span style="color: #fb2874;">overflow</span>: auto;
+    <span style="color: #fb2874;">font-family</span>: monospace;
+}
+
+<span style="color: #555556;">/* </span><span style="color: #555556;">inline code =code= or ~code~ </span><span style="color: #555556;">*/</span>
+:not(pre) &gt; code {
+    <span style="color: #fb2874;">padding</span>: 2px 5px;
+    <span style="color: #fb2874;">margin</span>: auto 1px;
+    <span style="color: #fb2874;">border</span>: 1px solid <span style="color: #000000; background-color: #DDD;">#DDD</span>;
+    <span style="color: #fb2874;">border-radius</span>: 3px;
+    <span style="color: #fb2874;">background-clip</span>: padding-box;
+    <span style="color: #fb2874;">color</span>: <span style="color: #ffffff; background-color: #333;">#333</span>;
+}
+
+<span style="color: #b6e63e;">body </span>{
+    <span style="color: #fb2874;">max-width</span>: 750px;
+    <span style="color: #fb2874;">margin</span>: 0 auto;
+    <span style="color: #fb2874;">font-size</span>: 14px;
+    <span style="color: #fb2874;">line-height</span>: 1.4em;
+}
+<span style="color: #fd971f;">@media</span> screen and (min-width: 600px) {
+    <span style="color: #b6e63e;">body </span>{
+        <span style="color: #fb2874;">font-size</span>: 18px;
+    }
+}
+
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb7fee97" class="outline-2">
+<h2 id="orgb7fee97"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> Adding comments</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<a href="http://snarvaez.poweredbygnulinux.com/notes/org-mode-publishing-adding-disqus-code.html">http://snarvaez.poweredbygnulinux.com/notes/org-mode-publishing-adding-disqus-code.html</a>
+Discuss seems to be the way to go for adding comments in pages.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">aod-org-export-filter</span> (output backend info)
+  (<span style="color: #fb2874;">let*</span> ((output (replace-regexp-in-string  <span style="color: #e2c770;">"1912-blogging-with-emacs"</span> page_id output))
+         (output (replace-regexp-in-string  <span style="color: #e2c770;">"actondev-blog"</span> disqus_id output))
+         (output (replace-regexp-in-string  <span style="color: #e2c770;">"localhost"</span> page_url output)))
+    output))
+
+(<span style="color: #fb2874;">let*</span> ((org-export-global-macros '((<span style="color: #e2c770;">"title"</span> . <span style="color: #e2c770;">"my org title"</span>)))
+       (prog-mode-hook nil) <span style="color: #555556;">;; </span><span style="color: #555556;">fixing interfering minor modes</span>
+       (page_id <span style="color: #e2c770;">"1912-blogging-with-emacs"</span>)
+       (page_url <span style="color: #e2c770;">"localhost"</span>)
+       (disqus_id <span style="color: #e2c770;">"actondev-blog"</span>)
+       (org-export-filter-final-output-functions
+        '(aod-org-export-filter))
+       )
+  (org-html-export-to-html)
+  )
+</pre>
+</div>
+
+<p>
+test here title my org title
+</p>
+
+<ul class="org-ul">
+<li>{{page<sub>url</sub>}}</li>
+<li>{{page<sub>id</sub>}}</li>
+<li>{{disqus<sub>id</sub>}}</li>
+</ul>
+<h3>discus.html comments? for title {{{title}}} page_id 1912-blogging-with-emacs</h3>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+      // TODO skip page_url for now
+      // this.page.url = "localhost";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "1912-blogging-with-emacs"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+  
+  (function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://actondev-blog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+<div id="outline-container-org8ec0abc" class="outline-2">
+<h2 id="org8ec0abc"><span class="section-number-2">5</span> macros</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<a href="https://bnolet.me/posts/2019/06/macros-in-org-mode/">https://bnolet.me/posts/2019/06/macros-in-org-mode/</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgc5406d5" class="outline-2">
+<h2 id="orgc5406d5"><span class="section-number-2">6</span> </h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2019-12-10 Tue 23:53</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
