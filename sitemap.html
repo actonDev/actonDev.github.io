@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-12-11 Wed 19:11 -->
+<!-- 2019-12-11 Wed 19:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ClojureScript tip: about reagent &amp; partials</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -179,7 +179,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel='stylesheet' type='text/css' href='../css/style.css' />
+<link rel='stylesheet' type='text/css' href='css/style.css' />
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 <script type="text/javascript">
 /*
@@ -230,194 +230,14 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">ClojureScript tip: about reagent &amp; partials</h1>
-
-<div id="outline-container-org39a51d7" class="outline-2">
-<h2 id="org39a51d7">From singleton to reusable</h2>
-<div class="outline-text-2" id="text-org39a51d7">
-<p>
-During the development of a personal project, I first had my cljs namespaces dealing with state in a <b>singleton</b> kind of structure. One state <code>atom</code> and that's it. Transitioning to a reusable logic meant that I had to start passing around the <code>state</code>. All I have to do for that is to add <code>*state</code> as the first argument in any function that deals with the state.
-</p>
-
-<p>
-A "problem" appeared when I relaized I was passing around components in some custom functions that I had written (ie parsing tree maps and rendering leaf nodes with the provided element)
-</p>
-
-<p>
-Picture this
-</p>
-
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defn</span> <span style="color: #b6e63e;">draw-leaf-nodes</span>
-  <span style="color: #7f7f80;">"You pass a map and it renders using the leaf-elem all the leafs which branch under the branch-key</span>
-
-<span style="color: #7f7f80;">  Example m (with branch-key :steps)</span>
-<span style="color: #7f7f80;">  {:steps</span>
-<span style="color: #7f7f80;">   [{:level-0-leaf true}</span>
-<span style="color: #7f7f80;">    {:steps [{:level-1-leaf true}</span>
-<span style="color: #7f7f80;">             {:level-1-leaf true}]}]}"</span>
-  [m branch-key leaf-elem]
-  <span style="color: #e2c770;">"the code.."</span>)
-</pre>
-</div>
-
-<p>
-In my first implementation I could easily pass an element like this
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">element</span>
-  <span style="color: #e2c770;">"NOTE! *state is global in this namespace"</span>
-  []
-  [<span style="color: #fd971f;">:div</span> {<span style="color: #fd971f;">:on-click</span> #(swap! *state update <span style="color: #fd971f;">:click-count</span> inc)}])
-</pre>
-</div>
-
-<p>
-And in the passed element I could modify the state. But as we said before, during the refactoring process, to make the namespace reusable, I have to pass around the <code>*state</code> and not use a global state. So, our element becomes
-</p>
-
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">element</span>
-  <span style="color: #e2c770;">"NOTE! *state is passed in the function"</span>
-  [*state]
-  [<span style="color: #fd971f;">:div</span> {<span style="color: #fd971f;">:on-click</span> #(swap! *state update <span style="color: #fd971f;">:click-count</span> inc)}])
-</pre>
-</div>
-
-<p>
-Perfect! But now how do we pass around this element in that <code>draw-leaf-nodes</code> function?
-</p>
-</div>
-</div>
-
-<div id="outline-container-org0580cac" class="outline-2">
-<h2 id="org0580cac">Enter partials</h2>
-<div class="outline-text-2" id="text-org0580cac">
-<p>
-<code>partial</code> is a greate &amp; quick way to pass around a new function where you "fix" the first n arguments yourself.
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defn</span> <span style="color: #b6e63e;">partial</span>
-  <span style="color: #7f7f80;">"Takes a function f and fewer than the normal arguments to f, and</span>
-<span style="color: #7f7f80;">  returns a fn that takes a variable number of additional args. When</span>
-<span style="color: #7f7f80;">  called, the returned function calls f with args + additional args."</span>
-  ([f] f)
-  ([f arg1]
-   (<span style="color: #fb2874;">fn</span>
-     ([] (f arg1))
-     ([x] (f arg1 x))
-     ([x y] (f arg1 x y))
-     ([x y z] (f arg1 x y z))
-     ([x y z &amp; args] (apply f arg1 x y z args))))
-  <span style="color: #555556;">;; </span><span style="color: #555556;">and goes on..</span>
-  )
-</pre>
-</div>
-
-<p>
-So now I can pass
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">(partial element *state)
-</pre>
-</div>
-
-<p>
-to the <code>draw-leaf-nodes</code>.
-</p>
-</div>
-</div>
-<div id="outline-container-orgd182689" class="outline-2">
-<h2 id="orgd182689">Reagent re-rendering</h2>
-<div class="outline-text-2" id="text-orgd182689">
-<p>
-In my scenario, I noticed that now reagent was rerendering this partial element even though it didn't change. Just because in a higher level some state changed. But this particular element didn't need redrawing, so.. what gives?
-</p>
-
-<p>
-Turns out that each time I was calling
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  (draw-leaf-nodes (partial element *state))
-</pre>
-</div>
-
-<p>
-I was passing around a new function. To put it simply
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  (= (partial element *state) (partial element *state))
-</pre>
-</div>
-<p>
-will return false. So it turns out that I was calling the <code>draw-leaf-nodes</code> each time with a different argument, causing it to rerender!
-</p>
-</div>
-
-<div id="outline-container-orgff372d2" class="outline-3">
-<h3 id="orgff372d2">Solution</h3>
-<div class="outline-text-3" id="text-orgff372d2">
-<p>
-<a href="https://clojuredocs.org/clojure.core/memoize">Memoize</a> to the resque
-</p>
-
-<p>
-<code>(memoize f)</code>
-</p>
-<blockquote>
-<p>
-   Returns a memoized version of a referentially transparent function. The
-memoized version of the function keeps a cache of the mapping from arguments
-to results and, when calls with the same arguments are repeated often, has
-higher performance at the expense of higher memory use.
-</p>
-</blockquote>
-
-<p>
-So now I can use the memoized version of <code>partial</code> like this
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">def</span> <span style="color: #fd971f;">mem-partial</span> (memoize partial))
-</pre>
-</div>
-
-<p>
-Thus I can call
-</p>
-<div class="org-src-container">
-<pre class="src src-clojure">  (draw-leaf-nodes (mem-partial element *state))
-</pre>
-</div>
-
-<p>
-without causing rerenders!
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-orgb2ef517" class="outline-2">
-<h2 id="orgb2ef517">Comments</h2>
-<div class="outline-text-2" id="text-orgb2ef517">
-<p>
-Leave your comments below!
-</p>
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function () {
-  this.page.url = "";  // Replace PAGE_URL with your page's canonical URL variable
-  this.page.identifier = "1912-clojure-reagent-partial"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-  };
-  
-  (function() { // DON'T EDIT BELOW THIS LINE
-  var d = document, s = d.createElement('script');
-  s.src = 'https://actondev-blog.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</div>
+<ul class="org-ul">
+<li>posts
+<ul class="org-ul">
+<li><a href="posts/1912-blogging-with-emacs.html">Blogging with emacs &amp; org-mode</a></li>
+<li><a href="posts/1912-clojure-reagent-partial.html">ClojureScript tip: about reagent &amp; partials</a></li>
+<li><a href="posts/1910-WSL2-automatic-display.html">Setting up WSL2 xserver display</a></li>
+</ul></li>
+</ul>
 </div>
 </body>
 </html>

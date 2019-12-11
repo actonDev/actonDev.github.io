@@ -84,7 +84,7 @@
         ("posts"
          :base-directory ".."
          :base-extension "org"
-         :publishing-directory "../docs"
+         :publishing-directory "../"
 	 :exclude "dev/\\|index.org\\|/_"
          :recursive t
          :publishing-function aod-publish ; org-html-publish-to-html
@@ -107,10 +107,10 @@
 	("index"
 	 :base-directory ".."
          :base-extension "org"
-         :publishing-directory "../docs"
+         :publishing-directory "../"
          :publishing-function aod-publish ; org-html-publish-to-html
          :auto-sitemap nil
-         :html-head  "<link rel='stylesheet' type='text/css' href='../css/style.css' />"
+         :html-head  "<link rel='stylesheet' type='text/css' href='css/style.css' />"
          :html-head-extra "<meta name='viewport' content='width=device-width, initial-scale=1.0' />"
 	 :with-toc nil
 	 :html-postamble nil
