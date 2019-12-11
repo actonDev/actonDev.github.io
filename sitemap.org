@@ -1,0 +1,6 @@
+#+TITLE: 
+
+- posts
+  - [[file:posts/1912-blogging-with-emacs.org][Blogging with emacs & org-mode]]
+  - [[file:posts/1912-clojure-reagent-partial.org][ClojureScript tip: about reagent & partials]]
+  - [[file:posts/1910-WSL2-automatic-display.org][Setting up WSL2 xserver display]]

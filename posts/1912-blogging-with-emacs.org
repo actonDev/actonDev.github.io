@@ -1,0 +1,189 @@
+#+PROPERTY: header-args :eval never
+#+OPTIONS: toc:nil
+#+TITLE: Blogging with emacs & org-mode
+#+SUBTITLE: aka blogging using my personal note taking system. 2 birds 1 stone
+
+* Rationale
+  It's been around 3 years now (since 2016) that I'm using emacs, and mostly it was for the note taking in org-mode. I also wrote my thesis for my studies using org-mode. I think I spent quite a *lot* of time tweaking emacs/org-mode etc to manage this but at the end... I learned some first things about emacs!
+
+  Fast forward in 2019, I'm using emacs to learn/program in =Clojure=, so at the end learning emacs really paid off. :)
+  But, I digress. This post is about the process to set up a blog using org-mode
+* Exporting to html
+  When you in an org-mode file just run
+  - =org-html-export-to-html=
+   
+  to get the html exported file
+** Problem#1
+   #+BEGIN_VERSE
+   Please install htmlize from https://github.com/hniksic/emacs-htmlize
+   #+END_VERSE
+
+   Solution
+   #+BEGIN_SRC emacs-lisp
+(use-package htmlize)
+   #+END_SRC
+
+   Running again.. it works!
+** Problem#2
+   I use a package called =hideshowvis= to hide/show blocks/fuctions (aka collapsing/expanding a code block)
+   #+BEGIN_SRC emacs-lisp
+(use-package hideshow-org
+  ;; https://github.com/shanecelis/hideshow-org
+  :load-path "elisp/"
+  :hook (prog-mode . hs-org/minor-mode))
+
+(use-package hideshowvis
+  ;; https://www.emacswiki.org/emacs/hideshowvis.el
+  :load-path "elisp/"
+  :hook (prog-mode . hideshowvis-minor-mode))
+   #+END_SRC
+
+   And, in my surprise, upon exporting some code blocks, the output would contain some weird things. For example, the above codeblock would look like
+   #+BEGIN_SRC emacs-lisp
+,*hideshowvis*(use-package hideshow-org
+	       ;; https://github.com/shanecelis/hideshow-org
+	       :load-path "elisp/"
+	       :hook (prog-mode . hs-org/minor-mode))
+
+,*hideshowvis*(use-package hideshowvis
+	       ;; https://www.emacswiki.org/emacs/hideshowvis.el
+	       :load-path "elisp/"
+	       :hook (prog-mode . hideshowvis-minor-mode))
+   #+END_SRC
+
+   Upon googling, there is an issue in [[https://emacs.stackexchange.com/questions/50206/hideshowvis-text-shown-in-org-mode-source-code][stackoverflow]] about this
+
+   Solution
+   
+   In my configuration I add the =hideshowvis= in the prog-mode hook. I can see the hooks there
+   #+BEGIN_SRC emacs-lisp :results value code :exports both
+prog-mode-hook
+   #+END_SRC
+
+   #+RESULTS:
+   #+BEGIN_SRC emacs-lisp
+(rainbow-delimiters-mode hideshowvis-minor-mode hs-org/minor-mode show-paren-mode)
+   #+END_SRC
+
+   So.. why not just disable all these hooks? :)
+
+   #+BEGIN_SRC emacs-lisp
+(let ((prog-mode-hook nil))
+  (org-html-export-to-html))
+   #+END_SRC
+
+   #+RESULTS:
+   : 1912-blogging-with-emacs-org-mode.html
+
+   And it works! Wrapping it into a callable function
+
+   #+BEGIN_SRC emacs-lisp
+(defun my-export-to-html ()
+  (interactive)
+  (let ((prog-mode-hook nil))
+    (org-html-export-to-html)))
+   #+END_SRC
+
+   #+RESULTS:
+   : my-export-to-html
+
+   By the way, this was my first stack overflow answer! :)
+* Styling it
+  Found some ideas in https://github.com/gongzhitaao/orgcss about styling. It's a work in progress though :)
+  
+  The gist:
+  - add the following header in the org document
+    #+BEGIN_SRC org
+,#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css"/>
+    #+END_SRC
+  - an example ~style.css~ file
+    #+BEGIN_SRC css
+pre.src {
+    overflow: auto;
+    font-family: monospace;
+}
+
+/* inline code =code= or ~code~ */
+:not(pre) > code {
+    padding: 2px 5px;
+    margin: auto 1px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    background-clip: padding-box;
+    color: #333;
+}
+
+body {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.4em;
+}
+@media screen and (min-width: 600px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+    #+END_SRC
+* TODO Adding comments 2
+  http://snarvaez.poweredbygnulinux.com/notes/org-mode-publishing-adding-disqus-code.html
+  Discuss seems to be the way to go for adding comments in pages.
+
+  #+BEGIN_SRC emacs-lisp :eval yes
+(defun aod-org-export-filter (output backend info)
+  (let* ((output (replace-regexp-in-string  "{{page_id}}" page_id output))
+	 (output (replace-regexp-in-string  "{{disqus_id}}" disqus_id output))
+	 (output (replace-regexp-in-string  "{{page_url}}" page_url output)))
+    output))
+
+(let* ((org-export-global-macros '(("title" . "my org title")))
+       (prog-mode-hook nil) ;; fixing interfering minor modes
+       (page_id "1912-blogging-with-emacs")
+       (page_url "localhost")
+       (disqus_id "actondev-blog")
+       (org-export-filter-final-output-functions
+	'(aod-org-export-filter))
+       )
+  (org-html-export-to-html)
+  )
+  #+END_SRC
+
+  #+RESULTS:
+  : 1912-blogging-with-emacs-org-mode.html
+
+  test here title {{{title}}}
+
+  - {{page_url}}
+  - {{page_id}}
+  - {{disqus_id}}
+  # #+INCLUDE: "disqus.html" export html
+* COMMENT disquss 
+  the original snippets
+
+  #+BEGIN_SRC html
+<div id="disqus_thread"></div>
+<script>
+
+/**
+,*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+,*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+,*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://actondev-blog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                              
+  #+END_SRC
+* macros
+  https://bnolet.me/posts/2019/06/macros-in-org-mode/
+* 

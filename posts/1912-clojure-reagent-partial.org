@@ -1,0 +1,102 @@
+#+TITLE: ClojureScript tip: about reagent & partials
+
+* From singleton to reusable
+  During the development of a personal project, I first had my cljs namespaces dealing with state in a *singleton* kind of structure. One state =atom= and that's it. Transitioning to a reusable logic meant that I had to start passing around the =state=. All I have to do for that is to add =*state= as the first argument in any function that deals with the state.
+
+  A "problem" appeared when I relaized I was passing around components in some custom functions that I had written (ie parsing tree maps and rendering leaf nodes with the provided element)
+
+  Picture this
+
+  #+BEGIN_SRC clojure
+(defn draw-leaf-nodes
+  "You pass a map and it renders using the leaf-elem all the leafs which branch under the branch-key
+
+  Example m (with branch-key :steps)
+  {:steps
+   [{:level-0-leaf true}
+    {:steps [{:level-1-leaf true}
+             {:level-1-leaf true}]}]}"
+  [m branch-key leaf-elem]
+  "the code..")
+  #+END_SRC
+
+  In my first implementation I could easily pass an element like this
+  #+BEGIN_SRC clojure
+(defun element
+  "NOTE! *state is global in this namespace"
+  []
+  [:div {:on-click #(swap! *state update :click-count inc)}])
+  #+END_SRC
+
+  And in the passed element I could modify the state. But as we said before, during the refactoring process, to make the namespace reusable, I have to pass around the =*state= and not use a global state. So, our element becomes
+  
+  #+BEGIN_SRC clojure
+(defun element
+  "NOTE! *state is passed in the function"
+  [*state]
+  [:div {:on-click #(swap! *state update :click-count inc)}])
+  #+END_SRC
+  
+  Perfect! But now how do we pass around this element in that =draw-leaf-nodes= function?
+
+* Enter partials
+  =partial= is a greate & quick way to pass around a new function where you "fix" the first n arguments yourself.
+  #+BEGIN_SRC clojure
+(defn partial
+  "Takes a function f and fewer than the normal arguments to f, and
+  returns a fn that takes a variable number of additional args. When
+  called, the returned function calls f with args + additional args."
+  ([f] f)
+  ([f arg1]
+   (fn
+     ([] (f arg1))
+     ([x] (f arg1 x))
+     ([x y] (f arg1 x y))
+     ([x y z] (f arg1 x y z))
+     ([x y z & args] (apply f arg1 x y z args))))
+  ;; and goes on..
+  )
+  #+END_SRC
+
+  So now I can pass
+  #+BEGIN_SRC clojure
+(partial element *state)
+  #+END_SRC
+
+  to the =draw-leaf-nodes=.
+* Reagent re-rendering
+  In my scenario, I noticed that now reagent was rerendering this partial element even though it didn't change. Just because in a higher level some state changed. But this particular element didn't need redrawing, so.. what gives?
+
+  Turns out that each time I was calling
+  #+BEGIN_SRC clojure
+  (draw-leaf-nodes (partial element *state))
+  #+END_SRC
+
+  I was passing around a new function. To put it simply
+  #+BEGIN_SRC clojure
+  (= (partial element *state) (partial element *state))
+  #+END_SRC
+  will return false. So it turns out that I was calling the =draw-leaf-nodes= each time with a different argument, causing it to rerender!
+
+** Solution
+   [[https://clojuredocs.org/clojure.core/memoize][Memoize]] to the resque
+
+   =(memoize f)=
+   #+BEGIN_QUOTE
+   Returns a memoized version of a referentially transparent function. The
+memoized version of the function keeps a cache of the mapping from arguments
+to results and, when calls with the same arguments are repeated often, has
+higher performance at the expense of higher memory use.
+   #+END_QUOTE
+
+   So now I can use the memoized version of =partial= like this
+   #+BEGIN_SRC clojure
+(def mem-partial (memoize partial))
+   #+END_SRC
+
+   Thus I can call
+   #+BEGIN_SRC clojure
+  (draw-leaf-nodes (mem-partial element *state))
+   #+END_SRC
+
+   without causing rerenders!

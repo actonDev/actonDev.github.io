@@ -1,0 +1,146 @@
+* Publishing
+    http://snarvaez.poweredbygnulinux.com/notes/org-mode-publishing-adding-disqus-code.html
+
+    TODO
+    + [ ] automate the process (CI?)
+    + [ ] document the usage to make it usable by others
+
+    #+BEGIN_SRC emacs-lisp
+(defun aod--replace-regexp (regexp replace)
+  (beginning-of-buffer)
+  (while (re-search-forward regexp nil t)
+    (replace-match replace))
+  )
+
+(defun aod--disqus-snippet ()
+  (let* ((root (projectile-project-root))
+	 (path (format "%sdev/disqus.org" root)))
+    ;; (message (format "root %s path %s" root path))
+    ;; (message (format "--- disqus id %s" disqus_id))
+    ;; (message (format "--- page id %s" page_id))
+    ;; (message (format "--- page url %s" page_url))
+    (with-temp-buffer
+      (insert-file-contents path)
+      (beginning-of-buffer)
+      (aod--replace-regexp "{{disqus_id}}" disqus_id)
+      (aod--replace-regexp "{{page_id}}" page_id)
+      (aod--replace-regexp "{{page_url}}" page_url)
+      (buffer-string))))
+
+;; testing
+(let ((page_url "MYURL")
+      (page_id "MYPAGE")
+      (disqus_id "actondev-blog"))
+  (aod--disqus-snippet)
+  nil)
+    #+END_SRC
+
+    #+RESULTS:
+
+    #+BEGIN_SRC emacs-lisp
+(require 'ox-publish)
+
+;; org-html-publish-to-html
+
+(defun aod--buffer-dir ()
+  (file-name-base (directory-file-name (file-name-directory (buffer-file-name)))))
+
+(define-minor-mode aod-disqus-mode
+  "Insert the disqus comments snippet at the end of an org file"
+  nil ;; init value
+  nil ;; lighter
+  nil ;; keymap
+  ;; body
+  (message "Aod disqus mode..")
+  (message (buffer-name))
+  (when (and (buffer-file-name) ; not adding the disqus body in temp buffers
+					; these could be snippets in org-mode
+	     (string= "posts" (aod--buffer-dir)) ; add comments only in org files in /posts dir
+	     )
+    (let* ((page_id (file-name-base (buffer-file-name)))
+	   (page_url "")
+	   (disqus-snippet (aod--disqus-snippet)))
+      ;; (message (format "disqus snippit %s" disqus-snippet))
+      (end-of-buffer)
+      (newline-and-indent)
+      (insert disqus-snippet)
+      )
+    ;; marking the buffer as not modified - to not upon killing
+    ;; comment next line to debug the actual changes that were done
+    (not-modified)
+    )
+  )
+
+; org-html-publish-to-html is the normal
+(defun aod-publish (plist filename pub-dir)
+  (org-publish-org-to 'html filename
+		      (concat "." (or (plist-get plist :html-extension)
+				      org-html-extension
+				      "html"))
+		      plist pub-dir))
+
+(setq org-publish-project-alist
+      '(;; ... add all the components here
+        ("posts"
+         :base-directory ".."
+         :base-extension "org"
+         :publishing-directory "../docs"
+	 :exclude "dev/\\|index.org\\|/_"
+         :recursive t
+         :publishing-function aod-publish ; org-html-publish-to-html
+         :headline-levels 4             ; Just the default for this project.
+	 :section-numbers nil
+         :auto-preamble t
+         :auto-sitemap t
+         :sitemap-filename "sitemap.org"  ; sitemap.org (it's the default)
+         :sitemap-title ""
+         :language "en"
+         :html-head  "<link rel='stylesheet' type='text/css' href='../css/style.css' />"
+         :html-head-extra "<meta name='viewport' content='width=device-width, initial-scale=1.0' />"
+	 :with-toc nil
+         :with-author "actondev"
+	 :html-postamble nil
+         :with-email nil
+         :exports code
+         :htmlized-source t
+         )
+	("index"
+	 :base-directory ".."
+         :base-extension "org"
+         :publishing-directory "../docs"
+         :publishing-function aod-publish ; org-html-publish-to-html
+         :auto-sitemap nil
+         :html-head  "<link rel='stylesheet' type='text/css' href='../css/style.css' />"
+         :html-head-extra "<meta name='viewport' content='width=device-width, initial-scale=1.0' />"
+	 :with-toc nil
+	 :html-postamble nil
+         :with-author "actondev"
+         )
+        ("blog" :components ("posts" "index"))
+	))
+
+(let ((prog-mode-hook nil)
+      (disqus_id "actondev-blog")
+      (org-mode-hook '(aod-disqus-mode))
+      )
+  ;;(org-publish-remove-all-timestamps)
+  (org-publish-project "blog" t))
+
+    #+END_SRC
+
+    #+RESULTS:
+
+
+    
+* Notes
+  #+BEGIN_SRC emacs-lisp
+
+;;(defun org-html-publish-to-html
+(org-publish-org-to 'html filename
+		    (concat "." (or (plist-get plist :html-extension)
+				    org-html-extension
+				    "html"))
+		    plist pub-dir)
+
+
+  #+END_SRC
