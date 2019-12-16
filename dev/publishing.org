@@ -206,10 +206,11 @@ Default format would show day hour etc.."
 		    title-string
 		    "<br/>"
 		    (when subtitle-string
-		      "<span class='subtitle'>"
-		      subtitle-string
-		      "</span>"
-		      "<br/>")
+		      (concat
+		       "<span class='subtitle'>"
+		       subtitle-string
+		       "</span>"
+		       "<br/>"))
 		    "<span class='subtitle date'>"
 		    date-string
 		    "</span>"
