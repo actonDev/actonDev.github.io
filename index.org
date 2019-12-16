@@ -2,7 +2,7 @@
 #+SUBTITLE: aka my blog
 #+OPTIONS: num:nil
 
-My (dev nick)name is actondev and this is my blog. Created with emacs (see the relevant [[file:posts/1912-blogging-with-emacs.org][post]])
+My (dev nick)name is actondev and this is my blog. Created with emacs.
 
 * Sitemap
   #+INCLUDE: "sitemap.org"

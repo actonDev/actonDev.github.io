@@ -1,0 +1,15 @@
+#+TITLE: Clojure & midi
+
+Lo and behold: some notes that I took while I was adding midi output in a clojure application
+
+* Useful reference
+- https://github.com/stuarthalloway/programming-clojure/blob/e10099a/src/examples/midi.clj
+  at the time of writing =e10099a= is the latest commit in =master=
+- https://github.com/rosejn/midi-clj/blob/dba91fb/src/midi.clj
+  
+
+* Enumerating midi devices
+  #+BEGIN_SRC clojure
+(ns actondev.midi.core
+  (:import [javax.sound.midi MidiSystem]))
+  #+END_SRC

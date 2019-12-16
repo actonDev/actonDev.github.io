@@ -1,0 +1,78 @@
+#+TITLE: Plato's cave, Bill Hicks & art in general
+#+SUBTITLE: aka dimensions, reality and the role of art
+#+DATE: <2019-12-16 Mon>
+
+Up until recently I hand't read the actual story of Plato's cave, I just knew the gist of it. But weird thoughts emerged which led me to read about it - and then write about it.
+
+* Plato's cave
+  I became familiar with the *title* (not so much about the context) *Plato's cave* after seeing *Matrix*. The parallel lines between Matrix and this story is about
+  - perceiving as real a projection/fake reality
+  - breaking through into the real world
+
+  The story of Plato's cave goes like this. Some prisoners live deep in a cave, chained, and looking on the wall of the cave without being able to move their body or even their heads. The only thing that they can see is the wall of the cave, upon which certain shadow shapes appear. The shadows are cast from a fire that is burning.
+
+  Between the fire and the prisoners there is a small road where certain objects are put, like statues etc, and people pass by, there are people talking and so on. As Socrates points out, the prisoners see only the shadows of all these, and attribute the voices they hear to these shadows. This is reality for them.
+
+  Then, in the story, Socrates examines the case of a prisoner breaking free. He steps outside, into the real world and.. he has difficulty seeing from all this light! It takes time for his eyes to adapt to the light, the new shapes, the.. extra dimension! We could say that his reality jumped from 2d into 3d.
+
+  #+BEGIN_VERSE
+  Side note: that reminds me of [[https://www.goodreads.com/book/show/433567.Flatland?from_search=true&qid=vDaoUTUpz3&rank=4][flatland]], a really nice thought experiment about dimensions and reality.
+  #+END_VERSE
+
+  So, after his eyes adapted ha can now see these new kind of shapes that are produced  by the sun (aka fire v2.0), our hero now feels bad about the prisoners left behind and for the lack of *knowledge* they all have there. Thus, he decides to return and to break the news. Upon his descending, he cannot see in the darkness. Again, his eyes need time to adapt. So, judged by the prisoners, he has gone blind. He can no longer distinguish the shadows on the wall, recognize the objects etc. He tells them his story but they don't believe him. How could they? He cannot "see" in their reality, for them he's in a worse state than before leaving.
+
+  And finally the story finishes with the statement that these prisoners.. might even *kill* our hero.
+
+* Bill Hicks and the point of life
+  Upon reading the story itself (and not some synopsis) I was really struck by these last words. That the other prisoners might *kill* the freed prisoner that returned. This reminded my a sketch of Bill Hicks about the meaning of life. I will not say anything more about it, just watch for yourself.
+
+  #+BEGIN_EXPORT ascii
+  https://www.youtube.com/embed/KgzQuE1pR1w
+  #+END_EXPORT
+
+  #+BEGIN_EXPORT html
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/KgzQuE1pR1w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  #+END_EXPORT
+
+  #+BEGIN_EXPORT html
+    <div style="height: 800px; display:flex; flex-direction:column; justify-content: space-around; text-align: center;">
+      <p>Intentionally left blank. Watch the f*ing video first</p>
+    </div>
+  #+END_EXPORT
+
+  #+BEGIN_QUOTE
+  And we.. kill those people
+    
+  -- Bill Hicks
+  #+END_QUOTE
+  This sketch, this way of viewing life, has played a major role in developing my view of the world. (This alongside the music of *Tool* - Tool btw introduced me to Bill Hicks with the intro in their track [[https://www.youtube.com/watch?v=51fcG3sxvII][Third Eye]])
+
+* Lights, camera, action!
+  This brings me to the 3rd item of the title, *art*. Around the summer of 2019 I was thinking of starting an online course about writing fiction. The motivation came from an idea I had some night. I was picturing some alternative future about Greece (my country of origin), where some new customs have been adopted by the population. I quite liked these ideas, I even spoke about it with some friends, and then realized: what if I were determined to make this happen? To influence this change that I had in mind. How one goes about doing that? Two ways came into my head
+  - direct \\
+    ..aka politics: starting a movement, or whatever, promoting this agenda
+  - indirect \\
+    ..aka art
+
+  And as you may realized, *art* was the answer that came in my head. Art is like a Trojan horse, transmitting powerful ideas through a medium that.. has nothing to do with the idea itself! If we return to the story of the cave once more, we see that directly trying to influence people into accepting your version of reality (or truth) doesn't work quite well.
+
+  So now let's imagine our hero trying to *indirectly* influence the left behind prisoners. How would he transmit his "virus" of idea? To start with, the analogy of fire casting shadows into a wall and the people looking at these shadows.. feels awfully similar with watching a movie. Or a theater play, or shadow puppetry. You submerge the viewer into an alternate reality, and (ideally) he comes out of the experience with new knowledge/ideas/feelings. So our hero decides to tell a story using these shadows. He gets some people to pretend they are prisoners, he puts them at the point where the fire casts their shadow in the cave wall and... action!
+
+  You cannot force your ideas into these prisoners. But you can make them question their own.
+
+** About dimensions
+   Another thing that struck me is the fact of the *2d* shadows that are cast from objects from the *3d* world in junction with the idea of utilizing these 2d "shadows" to tell a story about the reality of the 3d world. If I were to name the one thing that makes humans worthy of our existence, is the capacity to produce art, and the creations that exist throughout the millennia.
+
+   Art tells a story, that is more true than reality itself, by using a constrained medium that exists in far less dimensions than reality itself. A small poem can be a few sentences long but can make you ponder for hours. A good theater supersedes the space & time where it takes place, and tells a story about all the people across all ages. And, in my opinion, all this beauty comes from the constraints: few words to describe your ideas, certain dialog to tell a story, limited space for the actors to move. This restrictions force you to make choices. They force you to abstract. And these abstractions is what makes art great.
+
+   #+BEGIN_QUOTE
+   Through abstraction you provoke imagination.
+   It's what fills the gaps.
+
+   -- Me
+   #+END_QUOTE
+
+   While writing this I suddenly thought about *Virtual Reality*. Based upon what is written above.. VR could not pass a transcendental meaning about reality. You submerge the viewer from his "real" *3d* world into a virtual.. *3d* world. The constraints are lost. An alternate reality being shoved down your throat. No gaps to be filled, nothing left to imagine.
+
+* Instead of an epilogue
+  I never (till the time of writing <2019-12-12 Thu> at least) truly continued with the writing course, but I guess that writing posts such as this one will help me with my writing skills. The end game is to feel comfortable enough to create stories... Trojan horses carrying ideas.

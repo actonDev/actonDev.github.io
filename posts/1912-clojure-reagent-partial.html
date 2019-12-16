@@ -3,183 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-12-11 Wed 19:36 -->
+<!-- 2019-12-16 Mon 18:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ClojureScript tip: about reagent &amp; partials</title>
 <meta name="generator" content="Org mode" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
-</style>
+<link rel='stylesheet' type='text/css' href='../css/default.css' />
 <link rel='stylesheet' type='text/css' href='../css/style.css' />
+<link rel='stylesheet' type='text/css' href='../css/code.css' />
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 <script type="text/javascript">
 /*
@@ -229,12 +60,14 @@ for the JavaScript code in this tag.
 </script>
 </head>
 <body>
+<div id="preamble" class="status">
+<h1 class='title'>ClojureScript tip: about reagent & partials<br/><span class='subtitle date'>2019-12-09</span></h1>
+</div>
 <div id="content">
-<h1 class="title">ClojureScript tip: about reagent &amp; partials</h1>
 
-<div id="outline-container-org39a51d7" class="outline-2">
-<h2 id="org39a51d7">From singleton to reusable</h2>
-<div class="outline-text-2" id="text-org39a51d7">
+<div id="outline-container-orgfc219b4" class="outline-2">
+<h2 id="orgfc219b4">From singleton to reusable</h2>
+<div class="outline-text-2" id="text-orgfc219b4">
 <p>
 During the development of a personal project, I first had my cljs namespaces dealing with state in a <b>singleton</b> kind of structure. One state <code>atom</code> and that's it. Transitioning to a reusable logic meant that I had to start passing around the <code>state</code>. All I have to do for that is to add <code>*state</code> as the first argument in any function that deals with the state.
 </p>
@@ -248,7 +81,7 @@ Picture this
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defn</span> <span style="color: #b6e63e;">draw-leaf-nodes</span>
+<pre class="src src-clojure"><span style="color: #e91e63;">(</span><span style="color: #fb2874;">defn</span> <span style="color: #b6e63e;">draw-leaf-nodes</span>
   <span style="color: #7f7f80;">"You pass a map and it renders using the leaf-elem all the leafs which branch under the branch-key</span>
 
 <span style="color: #7f7f80;">  Example m (with branch-key :steps)</span>
@@ -256,8 +89,8 @@ Picture this
 <span style="color: #7f7f80;">   [{:level-0-leaf true}</span>
 <span style="color: #7f7f80;">    {:steps [{:level-1-leaf true}</span>
 <span style="color: #7f7f80;">             {:level-1-leaf true}]}]}"</span>
-  [m branch-key leaf-elem]
-  <span style="color: #e2c770;">"the code.."</span>)
+  <span style="color: #2196F3;">[</span>m branch-key leaf-elem<span style="color: #2196F3;">]</span>
+  <span style="color: #e2c770;">"the code.."</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -265,10 +98,10 @@ Picture this
 In my first implementation I could easily pass an element like this
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">element</span>
+<pre class="src src-clojure"><span style="color: #e91e63;">(</span><span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">element</span>
   <span style="color: #e2c770;">"NOTE! *state is global in this namespace"</span>
-  []
-  [<span style="color: #fd971f;">:div</span> {<span style="color: #fd971f;">:on-click</span> #(swap! *state update <span style="color: #fd971f;">:click-count</span> inc)}])
+  <span style="color: #2196F3;">[]</span>
+  <span style="color: #2196F3;">[</span><span style="color: #fd971f;">:div</span> <span style="color: #EF6C00;">{</span><span style="color: #fd971f;">:on-click</span> #<span style="color: #B388FF;">(</span>swap! *state update <span style="color: #fd971f;">:click-count</span> inc<span style="color: #B388FF;">)</span><span style="color: #EF6C00;">}</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -277,10 +110,10 @@ And in the passed element I could modify the state. But as we said before, durin
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">element</span>
+<pre class="src src-clojure"><span style="color: #e91e63;">(</span><span style="color: #fb2874;">defun</span> <span style="color: #b6e63e;">element</span>
   <span style="color: #e2c770;">"NOTE! *state is passed in the function"</span>
-  [*state]
-  [<span style="color: #fd971f;">:div</span> {<span style="color: #fd971f;">:on-click</span> #(swap! *state update <span style="color: #fd971f;">:click-count</span> inc)}])
+  <span style="color: #2196F3;">[</span>*state<span style="color: #2196F3;">]</span>
+  <span style="color: #2196F3;">[</span><span style="color: #fd971f;">:div</span> <span style="color: #EF6C00;">{</span><span style="color: #fd971f;">:on-click</span> #<span style="color: #B388FF;">(</span>swap! *state update <span style="color: #fd971f;">:click-count</span> inc<span style="color: #B388FF;">)</span><span style="color: #EF6C00;">}</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -290,27 +123,27 @@ Perfect! But now how do we pass around this element in that <code>draw-leaf-node
 </div>
 </div>
 
-<div id="outline-container-org0580cac" class="outline-2">
-<h2 id="org0580cac">Enter partials</h2>
-<div class="outline-text-2" id="text-org0580cac">
+<div id="outline-container-org5c43c99" class="outline-2">
+<h2 id="org5c43c99">Enter partials</h2>
+<div class="outline-text-2" id="text-org5c43c99">
 <p>
 <code>partial</code> is a greate &amp; quick way to pass around a new function where you "fix" the first n arguments yourself.
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">defn</span> <span style="color: #b6e63e;">partial</span>
+<pre class="src src-clojure"><span style="color: #e91e63;">(</span><span style="color: #fb2874;">defn</span> <span style="color: #b6e63e;">partial</span>
   <span style="color: #7f7f80;">"Takes a function f and fewer than the normal arguments to f, and</span>
 <span style="color: #7f7f80;">  returns a fn that takes a variable number of additional args. When</span>
 <span style="color: #7f7f80;">  called, the returned function calls f with args + additional args."</span>
-  ([f] f)
-  ([f arg1]
-   (<span style="color: #fb2874;">fn</span>
-     ([] (f arg1))
-     ([x] (f arg1 x))
-     ([x y] (f arg1 x y))
-     ([x y z] (f arg1 x y z))
-     ([x y z &amp; args] (apply f arg1 x y z args))))
+  <span style="color: #2196F3;">(</span><span style="color: #EF6C00;">[</span>f<span style="color: #EF6C00;">]</span> f<span style="color: #2196F3;">)</span>
+  <span style="color: #2196F3;">(</span><span style="color: #EF6C00;">[</span>f arg1<span style="color: #EF6C00;">]</span>
+   <span style="color: #EF6C00;">(</span><span style="color: #fb2874;">fn</span>
+     <span style="color: #B388FF;">(</span><span style="color: #76ff03;">[]</span> <span style="color: #76ff03;">(</span>f arg1<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
+     <span style="color: #B388FF;">(</span><span style="color: #76ff03;">[</span>x<span style="color: #76ff03;">]</span> <span style="color: #76ff03;">(</span>f arg1 x<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
+     <span style="color: #B388FF;">(</span><span style="color: #76ff03;">[</span>x y<span style="color: #76ff03;">]</span> <span style="color: #76ff03;">(</span>f arg1 x y<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
+     <span style="color: #B388FF;">(</span><span style="color: #76ff03;">[</span>x y z<span style="color: #76ff03;">]</span> <span style="color: #76ff03;">(</span>f arg1 x y z<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
+     <span style="color: #B388FF;">(</span><span style="color: #76ff03;">[</span>x y z &amp; args<span style="color: #76ff03;">]</span> <span style="color: #76ff03;">(</span>apply f arg1 x y z args<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span><span style="color: #EF6C00;">)</span><span style="color: #2196F3;">)</span>
   <span style="color: #555556;">;; </span><span style="color: #555556;">and goes on..</span>
-  )
+  <span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -318,7 +151,7 @@ Perfect! But now how do we pass around this element in that <code>draw-leaf-node
 So now I can pass
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(partial element *state)
+<pre class="src src-clojure"><span style="color: #e91e63;">(</span>partial element *state<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -327,9 +160,9 @@ to the <code>draw-leaf-nodes</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd182689" class="outline-2">
-<h2 id="orgd182689">Reagent re-rendering</h2>
-<div class="outline-text-2" id="text-orgd182689">
+<div id="outline-container-org43b3c92" class="outline-2">
+<h2 id="org43b3c92">Reagent re-rendering</h2>
+<div class="outline-text-2" id="text-org43b3c92">
 <p>
 In my scenario, I noticed that now reagent was rerendering this partial element even though it didn't change. Just because in a higher level some state changed. But this particular element didn't need redrawing, so.. what gives?
 </p>
@@ -338,7 +171,7 @@ In my scenario, I noticed that now reagent was rerendering this partial element 
 Turns out that each time I was calling
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">  (draw-leaf-nodes (partial element *state))
+<pre class="src src-clojure">  <span style="color: #e91e63;">(</span>draw-leaf-nodes <span style="color: #2196F3;">(</span>partial element *state<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -346,7 +179,7 @@ Turns out that each time I was calling
 I was passing around a new function. To put it simply
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">  (= (partial element *state) (partial element *state))
+<pre class="src src-clojure">  <span style="color: #e91e63;">(</span>= <span style="color: #2196F3;">(</span>partial element *state<span style="color: #2196F3;">)</span> <span style="color: #2196F3;">(</span>partial element *state<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 <p>
@@ -354,9 +187,9 @@ will return false. So it turns out that I was calling the <code>draw-leaf-nodes<
 </p>
 </div>
 
-<div id="outline-container-orgff372d2" class="outline-3">
-<h3 id="orgff372d2">Solution</h3>
-<div class="outline-text-3" id="text-orgff372d2">
+<div id="outline-container-orgce0e326" class="outline-3">
+<h3 id="orgce0e326">Solution</h3>
+<div class="outline-text-3" id="text-orgce0e326">
 <p>
 <a href="https://clojuredocs.org/clojure.core/memoize">Memoize</a> to the resque
 </p>
@@ -377,7 +210,7 @@ higher performance at the expense of higher memory use.
 So now I can use the memoized version of <code>partial</code> like this
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #fb2874;">def</span> <span style="color: #fd971f;">mem-partial</span> (memoize partial))
+<pre class="src src-clojure"><span style="color: #e91e63;">(</span><span style="color: #fb2874;">def</span> <span style="color: #fd971f;">mem-partial</span> <span style="color: #2196F3;">(</span>memoize partial<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -385,7 +218,7 @@ So now I can use the memoized version of <code>partial</code> like this
 Thus I can call
 </p>
 <div class="org-src-container">
-<pre class="src src-clojure">  (draw-leaf-nodes (mem-partial element *state))
+<pre class="src src-clojure">  <span style="color: #e91e63;">(</span>draw-leaf-nodes <span style="color: #2196F3;">(</span>mem-partial element *state<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -395,12 +228,11 @@ without causing rerenders!
 </div>
 </div>
 </div>
-<div id="outline-container-orgb2ef517" class="outline-2">
-<h2 id="orgb2ef517">Comments</h2>
-<div class="outline-text-2" id="text-orgb2ef517">
-<p>
-Leave your comments below!
-</p>
+</div>
+<div id="postamble" class="status">
+<h2>Comments</h2>
+Leave your comments below
+
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function () {
@@ -416,8 +248,6 @@ Leave your comments below!
   })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</div>
 </div>
 </body>
 </html>

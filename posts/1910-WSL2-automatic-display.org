@@ -1,4 +1,5 @@
 #+TITLE: Setting up WSL2 xserver display
+#+DATE: <2019-11-11 Mon>
 
 * WSL2 DISPLAY xserver
 

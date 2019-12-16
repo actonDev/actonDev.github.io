@@ -1,0 +1,69 @@
+#+TITLE: Plato's cave, Bill Hicks & art in general
+#+SUBTITLE: aka dimensions, reality and the role of art
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+Up until recently I hand't read the actual story of Plato's cave, I just knew the gist of it. But weird thought emerged which led me to read about it - and then write about it.
+
+* Plato's cave
+  I became familiar with the *title* (not so much about the context) *Plato's cave* after seeing *Matrix*. The parallel lines between Matrix and this story is about
+  - perceiving as real a projection/fake reality
+  - breaking through into the real world
+
+  The story of Plato's cave goes like this. Some prisoners are living deep in a cave, chained, and looking on the wall of the cave without being able to move their body or even their heads. The only thing that they can see is the wall of the cave, upon which certain shadow shapes appear. The shadows are caste from a fire that is burning.
+
+  Between the fire and the prisoners there is a small road from where certain objects are put, like statues etc, and people passing by, some of them talking and so on. As Socrates points out, the prisoners will be seeing only the shadows of all these, and attribute the voices/sounds that they are hearing to these shadows. This is reality for them.
+
+  Then, in the story, Socrates examines the case of a prisoner breaking free. He would step outside, into the real world and.. he would have difficutlty seeing from all this light! It would take time for his eyes to adjust in the light, the new shapes, the.. extra dimension! We could say that his reality jumped from 2d into 3d.
+
+  #+BEGIN_VERSE
+  Sidensote: that reminds me of [[https://www.goodreads.com/book/show/433567.Flatland?from_search=true&qid=vDaoUTUpz3&rank=4][flatland]], a really nice thought experiment about dimensions and reality.
+  #+END_VERSE
+
+  So, after adjusting to the lights (and seeing the new shapes that are cast by the.. sun - fire v2.0 - ), our hero would feel bad the prisoners left behind, and generally for the lack of *knowledge* they all had there. Thus, he decides to return there to break the news. Upon his descending, he cannot see in the darkness. Again, his eyes need time to adjust. So, judged by the other prisoners, he has gone blind. He can no longer distinguish the shadows on the wall, recognize the objects etc. He tells them his story but they don't believe them. How could they? He cannot "see" in their reality, for them he's in a worse state than before he left.
+
+  And the final worlds of the story is that these prisoners.. might even *kill him*.
+
+* Bill Hicks and the meaning of life
+  Upon reading the story itself (and not some gist) I was really struck by these last words. That the other prisoners might *kill* the freed prisoner that returned. This reminded my a number of Bill Hicks about the meaning of life. I will not say anything more about it, just watch for yourself.
+
+  #+BEGIN_EXPORT html
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/KgzQuE1pR1w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  #+END_EXPORT
+
+  #+BEGIN_EXPORT html
+    <div style="height: 800px; display:flex; flex-direction:column; justify-content: space-around; text-align: center;">
+      <p>Identionally left blank. Watch the f*ing video first</p>
+    </div>
+  #+END_EXPORT
+
+  #+BEGIN_QUOTE
+  And we.. kill those people
+  #+END_QUOTE
+  This video, this way of viewing life, has been a major role in developing my view of the world. (This alongside the music of *Tool* - Tool btw introduced me to Bill Hicks)
+
+* Lights, camera, action!
+  This brings me to the 3rd item of the title, *art*.
+
+  
+
+* COMMENT notes
+  - http://www.greek-language.gr/greekLang/ancient_greek/tools/corpora/anthology/content.html?t=530&m=1
+  - bill hicks video
+    we shoot those people
+
+** structure
+   - plato's cave
+     - short explanation
+       [[http://www.greek-language.gr/greekLang/ancient_greek/tools/corpora/anthology/content.html?t=530&m=1][greek-language.gr]]
+     - ends with 
+       #+BEGIN_QUOTE
+       Κι όποιον θα επιχειρούσε να τους λύσει από τα δεσμά και να τους ανεβάσει επάνω, αυτόν, αν μπορούσαν με κάποιον τρόπο να τον πιάσουν στα χέρια τους και να τον σκοτώσουν, δεν θα τον σκότωναν;
+
+Ασφαλώς, είπε.
+       #+END_QUOTE
+   - bill hicks video:
+     - is there a point in life..?
+     - ..we shoot those people
+   - art: mapping abstract, higher dimension ideas into less dimensions
+     - movies
+     - ..check my late night note

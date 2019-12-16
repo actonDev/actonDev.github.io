@@ -1,11 +1,22 @@
-* Publishing
-    http://snarvaez.poweredbygnulinux.com/notes/org-mode-publishing-adding-disqus-code.html
+* Notes
+  - org-mode publish inheriting
+    https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html#org95bf94a
+    "The inherit component"
+  - customizing code output css colors
+    https://stackoverflow.com/questions/12169667/org-mode-uses-current-color-theme-to-publish
+  - inline your css to the output html
+    https://stackoverflow.com/questions/19614104/how-to-tell-org-mode-to-embed-my-css-file-on-html-export
 
-    TODO
-    + [ ] automate the process (CI?)
-    + [ ] document the usage to make it usable by others
+* COMMENT Old Code
+** Publishing - old
+     http://snarvaez.poweredbygnulinux.com/notes/org-mode-publishing-adding-disqus-code.html
 
-    #+BEGIN_SRC emacs-lisp
+     TODO
+     + [ ] automate the process (CI?)
+     + [ ] document the usage to make it usable by others
+
+
+     #+BEGIN_SRC emacs-lisp
 (defun aod--replace-regexp (regexp replace)
   (beginning-of-buffer)
   (while (re-search-forward regexp nil t)
@@ -33,11 +44,11 @@
       (disqus_id "actondev-blog"))
   (aod--disqus-snippet)
   nil)
-    #+END_SRC
+     #+END_SRC
 
-    #+RESULTS:
+     #+RESULTS:
 
-    #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp
 (require 'ox-publish)
 
 ;; org-html-publish-to-html
@@ -116,7 +127,7 @@
 	 :html-postamble nil
          :with-author "actondev"
          )
-        ("blog" :components ("posts" "index"))
+         ("blog" :components ("posts" "index"))
 	))
 
 (let ((prog-mode-hook nil)
@@ -126,12 +137,236 @@
   ;;(org-publish-remove-all-timestamps)
   (org-publish-project "blog" t))
 
-    #+END_SRC
+     #+END_SRC
 
-    #+RESULTS:
+     #+RESULTS:
+
+** Publishing one post (previewing)
+   Didn't want to use the =org-html-export-to-html= cause then i'd have to manually add the css, all the options etc.. What I want is to reuse my options/styles that I have set, and only export ONE post.
+   #+BEGIN_SRC emacs-lisp
+;; getting relative path
+(let ((file-path "w:/dev/actondev.github.io/posts/_1912-plato-cave.org")
+      (base-path "w:/dev/actondev.github.io/"))
+  (file-relative-name file-path base-path))
 
 
-    
+(append '(1 2) '(3 4))
+
+(setq aod.blog/default-opts
+      `(
+	:base-directory ,aod.blog/base-dir
+	:publishing-directory ,aod.blog/base-dir
+	:base-extension org
+	:recursive t
+	:language "en"
+	:publishing-function org-html-publish-to-html
+	:html-head-extra "<meta name='viewport' content='width=device-width, initial-scale=1.0' />"
+	:auto-preamble t
+	:with-toc nil
+	:with-author nil
+	:with-email nil
+	:exports code
+	:htmlized-source t
+	))
+
+(defun aod.blog/make-publishing-opts (name &rest opts)
+  (append `(,name) aod.blog/default-opts opts))
+
+
+;;(aod.blog/make-publishing-opts "post" :with-toc t)
+   #+END_SRC
+
+   #+RESULTS:
+   : posts/_1912-plato-cave.org
+
+
+* Publishing 2.0
+  #+BEGIN_SRC emacs-lisp
+
+;; to force update
+;; (org-publish-remove-all-timestamps)
+(setq aod.blog/css '("css/default.css" "css/style.css" "css/code.css"))
+(setq aod.blog/disqus-id "actondev-blog")
+(setq aod.blog/base-dir (projectile-project-root))
+
+(defun aod.blog/-replace-regexp (regexp replace)
+  (beginning-of-buffer)
+  (while (re-search-forward regexp nil t)
+    (replace-match replace))
+  )
+
+(defun aod.blog/-title-hook (exporter)
+  "Created this to be able to format the date.
+Default format would show day hour etc.."
+  (let* ((date-string (format-time-string "%Y-%m-%d" (org-publish-find-date (buffer-file-name) nil)))
+	 (title-string (org-publish-find-title (buffer-file-name) nil))
+	 (subtitle-string (car (org-publish-find-property (buffer-file-name) :subtitle nil 'html)))
+	 (preamble (concat
+		    "<h1 class='title'>"
+		    title-string
+		    "<br/>"
+		    (when subtitle-string
+		      "<span class='subtitle'>"
+		      subtitle-string
+		      "</span>"
+		      "<br/>")
+		    "<span class='subtitle date'>"
+		    date-string
+		    "</span>"
+		    "</h1>")))
+    (setq org-html-preamble preamble)))
+
+(defun aod.blog/-css-include-hook (exporter)
+  "Solving the relative filename on includes! :)"
+  (let ((css-include-text (mapconcat (lambda (x)
+				       (let ((css-path (file-relative-name
+							(expand-file-name x aod.blog/base-dir)
+							(file-name-directory (buffer-file-name)))))
+					 (format
+					  "<link rel='stylesheet' type='text/css' href='%s' />"
+					  css-path)))
+				     aod.blog/css
+				     "\n")))
+    (setq org-html-head css-include-text)))
+
+(defun aod.blog/-css-inline-hook (exporter)
+  "Insert custom inline css"
+  (let ((css-inline-text (mapconcat (lambda (x)
+				      (let ((css-path (expand-file-name x aod.blog/base-dir)))
+					(concat
+					 (format "<!-- %s -->\n" x)
+					 "<style type='text/css'>\n"
+					 "/*<![CDATA[*/"
+					 "\n"
+					 (with-temp-buffer
+					   (insert-file-contents css-path)
+					   (buffer-string))
+					 "/*]]>*/"
+					 "\n</style>\n")))
+				    aod.blog/css
+				    "\n")))
+    (setq org-html-head css-inline-text))
+  )
+
+(setq aod.blog/default-opts
+      `(
+	:base-directory ,aod.blog/base-dir
+	:publishing-directory ,aod.blog/base-dir
+	:base-extension org
+	:recursive t
+	:language "en"
+	:publishing-function org-html-publish-to-html
+	:html-head-extra "<meta name='viewport' content='width=device-width, initial-scale=1.0' />"
+	:auto-preamble nil
+	;;:html-postamble nil ;; not setting to nil cause setq org-html-postamble won't work
+	:with-toc nil
+	:with-title nil ;; replacing default title/subtitle with my title hook
+	:section-numbers nil
+	:with-author nil
+	:with-email nil
+	:exports code
+	:htmlized-source t
+	))
+
+(defun aod.blog/make-publishing-opts (name &rest opts)
+  (append `(,name) aod.blog/default-opts opts))
+
+
+(defun aod.blog/-disqus-hook (exporter)
+  "Solving the relative filename on includes! :)
+TODO not use disqus.html but a string - make the function portable.
+Or, even when making this a package, use relative file to store disqus.html:
+See https://emacs.stackexchange.com/questions/17946/how-do-i-include-non-code-resources-as-part-of-an-emacs-package"
+  (if aod.blog/disqus-id
+      (let* ((path (format "%sdev/disqus.html" aod.blog/base-dir))
+	     (page-id (file-name-base (buffer-file-name)))
+	     (page-url "")
+	     (disqus-snippet (with-temp-buffer
+			       (insert-file-contents path)
+			       (beginning-of-buffer)
+			       (aod.blog/-replace-regexp "{{disqus_id}}" aod.blog/disqus-id)
+			       (aod.blog/-replace-regexp "{{page_id}}" page-id)
+			       (aod.blog/-replace-regexp "{{page_url}}" page-url)
+			       (buffer-string))))
+	(setq org-html-postamble disqus-snippet)
+	)
+    (setq org-html-postamble nil)))
+
+(defun aod.blog/-preview-post ()
+  "Exports current post"
+  (interactive)
+  (let* ((prog-mode-hook '(rainbow-delimiters-mode))
+	 (post-file (buffer-file-name))
+	 (org-html-head-include-default-style nil)
+	 (org-html-htmlize-output-type 'css) ;; instead of inline-css
+	 (base-dir (or aod.blog/base-dir (read-directory-name "Blog base dir: ")))
+	 (post-relative-file (file-relative-name post-file base-dir))
+	 (org-publish-project-alist
+	  `(,(aod.blog/make-publishing-opts
+	      "post"
+	      :exclude ".*"
+	      :include `(,post-relative-file)
+	      :html-postamble nil
+	      ))))
+    ;;(print org-publish-project-alist)
+    (org-publish-project "post" t)
+    ))
+
+(defun aod.blog/preview-post-inline-css ()
+  "Exports current post with inline css - portable html file"
+  (interactive)
+  (let* ((org-export-before-processing-hook '(aod.blog/-css-inline-hook
+					      ;;aod.blog/-disqus-hook
+					      aod.blog/-title-hook
+					      )))
+    (aod.blog/-preview-post)))
+
+(defun aod.blog/preview-post ()
+  "Exports current post with included css"
+  (interactive)
+  (let* ((org-export-before-processing-hook '(aod.blog/-css-include-hook
+					      aod.blog/-title-hook
+					      )))
+    (aod.blog/-preview-post)))
+
+(defun aod.blog/publish ()
+  (interactive)
+  (let* ((org-html-head-include-default-style nil)
+	 (aod.blog/base-dir (or aod.blog/base-dir (read-directory-name "Blog base dir: ")))
+	 (org-export-before-processing-hook '(aod.blog/-css-include-hook
+					      aod.blog/-disqus-hook
+					      aod.blog/-title-hook
+					      ))
+	 ;; clearing hooks: fixing hideshowvis bug - aka interfering minor modes
+	 (prog-mode-hook nil)
+	 (prog-mode-hook '(rainbow-delimiters-mode))
+	 (org-mode-hook nil)
+	 (org-publish-project-alist
+	  `(,(aod.blog/make-publishing-opts
+	      "posts"
+	      :exclude "dev/\\|index.org\\|/_"
+	      :auto-sitemap t
+	      :sitemap-filename "sitemap.org"
+	      :sitemap-title ""
+	      :sitemap-sort-files 'anti-chronologically
+	      )
+	    ,(aod.blog/make-publishing-opts
+	      "index"
+	      :exclude ".*"
+	      :include '("index.org")
+	      :html-postamble nil ;; disabling comments
+	      )
+	    ("blog" :components ("posts" "index"))
+	    )))
+    (org-publish-project "blog" t)
+    )
+  )
+
+  #+END_SRC
+
+  #+RESULTS:
+  : aod\.blog/publish
+
 * Notes
   #+BEGIN_SRC emacs-lisp
 
@@ -144,3 +379,7 @@
 
 
   #+END_SRC
+
+  Github pages with project (not user?)
+  - how to prepend a path in the generated links?
+    - https://emacs.stackexchange.com/questions/9807/org-mode-dont-change-relative-urls

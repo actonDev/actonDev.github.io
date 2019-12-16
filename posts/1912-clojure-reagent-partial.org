@@ -1,4 +1,5 @@
 #+TITLE: ClojureScript tip: about reagent & partials
+#+DATE: <2019-12-09 Mon>
 
 * From singleton to reusable
   During the development of a personal project, I first had my cljs namespaces dealing with state in a *singleton* kind of structure. One state =atom= and that's it. Transitioning to a reusable logic meant that I had to start passing around the =state=. All I have to do for that is to add =*state= as the first argument in any function that deals with the state.
