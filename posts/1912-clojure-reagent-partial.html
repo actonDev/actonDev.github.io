@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-12-16 Mon 18:12 -->
+<!-- 2020-04-04 Sat 20:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ClojureScript tip: about reagent &amp; partials</title>
@@ -65,9 +65,9 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 
-<div id="outline-container-orgfc219b4" class="outline-2">
-<h2 id="orgfc219b4">From singleton to reusable</h2>
-<div class="outline-text-2" id="text-orgfc219b4">
+<div id="outline-container-org6fb433c" class="outline-2">
+<h2 id="org6fb433c">From singleton to reusable</h2>
+<div class="outline-text-2" id="text-org6fb433c">
 <p>
 During the development of a personal project, I first had my cljs namespaces dealing with state in a <b>singleton</b> kind of structure. One state <code>atom</code> and that's it. Transitioning to a reusable logic meant that I had to start passing around the <code>state</code>. All I have to do for that is to add <code>*state</code> as the first argument in any function that deals with the state.
 </p>
@@ -123,9 +123,9 @@ Perfect! But now how do we pass around this element in that <code>draw-leaf-node
 </div>
 </div>
 
-<div id="outline-container-org5c43c99" class="outline-2">
-<h2 id="org5c43c99">Enter partials</h2>
-<div class="outline-text-2" id="text-org5c43c99">
+<div id="outline-container-org10b5055" class="outline-2">
+<h2 id="org10b5055">Enter partials</h2>
+<div class="outline-text-2" id="text-org10b5055">
 <p>
 <code>partial</code> is a greate &amp; quick way to pass around a new function where you "fix" the first n arguments yourself.
 </p>
@@ -160,9 +160,9 @@ to the <code>draw-leaf-nodes</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org43b3c92" class="outline-2">
-<h2 id="org43b3c92">Reagent re-rendering</h2>
-<div class="outline-text-2" id="text-org43b3c92">
+<div id="outline-container-orgda39d63" class="outline-2">
+<h2 id="orgda39d63">Reagent re-rendering</h2>
+<div class="outline-text-2" id="text-orgda39d63">
 <p>
 In my scenario, I noticed that now reagent was rerendering this partial element even though it didn't change. Just because in a higher level some state changed. But this particular element didn't need redrawing, so.. what gives?
 </p>
@@ -187,9 +187,9 @@ will return false. So it turns out that I was calling the <code>draw-leaf-nodes<
 </p>
 </div>
 
-<div id="outline-container-orgce0e326" class="outline-3">
-<h3 id="orgce0e326">Solution</h3>
-<div class="outline-text-3" id="text-orgce0e326">
+<div id="outline-container-org6acc7b7" class="outline-3">
+<h3 id="org6acc7b7">Solution</h3>
+<div class="outline-text-3" id="text-org6acc7b7">
 <p>
 <a href="https://clojuredocs.org/clojure.core/memoize">Memoize</a> to the resque
 </p>

@@ -1,0 +1,155 @@
+* Installing hunspell
+  #+BEGIN_SRC sh
+~> pacman -Ss hunspell
+mingw32/mingw-w64-i686-hunspell 1.7.0-4
+    Spell checker and morphological analyzer library and program (mingw-w64)
+mingw32/mingw-w64-i686-hunspell-en 2018.04.16-1
+    Hunspell dictionaries (mingw-w64)
+mingw64/mingw-w64-x86_64-hunspell 1.7.0-4
+    Spell checker and morphological analyzer library and program (mingw-w64)
+mingw64/mingw-w64-x86_64-hunspell-en 2018.04.16-1
+    Hunspell dictionaries (mingw-w64)
+ ~> pacman -Sy hunspell
+
+
+ # ...
+ pacman -Sy mingw64/mingw-w64-x86_64-hunspell mingw64/mingw-w64-x86_64-hunspell-en
+  #+END_SRC
+
+  Testing
+  #+BEGIN_SRC sh
+hunspell -d en_US
+
+# write something eg test
+# and then tesst
+
+hunspell -d el_GR
+  #+END_SRC
+
+
+* Downloading directories
+  First, find the place where the directories reside
+  - =hunspell -D=
+    eg in my case =C:/msys64/mingw64/share/hunspell/=
+  - =cd= to the above dir
+  - wget https://raw.githubusercontent.com/LibreOffice/dictionaries/master/el_GR/el_GR.dic
+  - wget https://raw.githubusercontent.com/LibreOffice/dictionaries/master/el_GR/el_GR.aff
+
+* hunspell executable
+  #+BEGIN_SRC emacs-lisp
+(executable-find "hunspell")
+  #+END_SRC
+
+  #+RESULTS:
+  : c:/msys64/mingw64/bin/hunspell.exe
+
+  Ok, we're set
+
+  #+BEGIN_SRC emacs-lisp
+(ispell-change-dictionary "en_US" t)
+(setq ispell-program-name (executable-find "hunspell"))
+
+(setenv
+ "DICPATH"
+ "C:/msys64/mingw64/share/hunspell"
+ )
+
+(setq ispell-local-dictionary-alist
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
+
+(setq ispell-local-dictionary-alist
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" t
+         ("-d" "en_US") nil iso-8859-1)))
+
+  #+END_SRC
+
+* TODO problem
+  #+BEGIN_SRC text
+Error enabling Flyspell mode:
+(Can’t find Hunspell dictionary with a .aff affix file)  
+  #+END_SRC
+
+** Debugging
+   1. place the cursor on the =ispell-find-hunspell-dictionaries= and run =eval-defun= with a prefix argument. That means
+      - C-u (prefix argument)
+      - M-x -> =eval-defun=
+      or
+      - C-u C-M-x
+   2. run the =(ispell-change-dictionary;s "en_US" t)=
+
+
+   #+BEGIN_SRC emacs-lisp
+(setq ispell-hunspell-dict-paths-alist
+
+      '(("en_US" "c:/msys64/mingw64/share/hunspell/en_US.aff")))
+
+;; c:/msys64/mingw64/share/hunspell/en_US.aff
+(ispell-change-dictionary "en_US" t)
+(setq ispell-local-dictionary "en_US")
+
+   #+END_SRC
+
+
+** solution?
+   #+BEGIN_SRC emacs-lisp
+;; en_US or en_US,el_GR ?
+(setenv "DICTIONARY" "en_US")
+
+;; after this, indeed the following commands works
+
+;; the following should contain in the results a line with the
+;; .dic and .aff files
+(call-process ispell-program-name
+	      null-device
+	      t
+	      nil
+	      "-D"
+	      "-a"
+	      null-device
+	      )
+   #+END_SRC
+
+
+* Dump
+   Installing hunspell
+   #+BEGIN_SRC sh
+~> pacman -Ss hunspell
+mingw32/mingw-w64-i686-hunspell 1.7.0-4
+    Spell checker and morphological analyzer library and program (mingw-w64)
+mingw32/mingw-w64-i686-hunspell-en 2018.04.16-1
+    Hunspell dictionaries (mingw-w64)
+mingw64/mingw-w64-x86_64-hunspell 1.7.0-4
+    Spell checker and morphological analyzer library and program (mingw-w64)
+mingw64/mingw-w64-x86_64-hunspell-en 2018.04.16-1
+    Hunspell dictionaries (mingw-w64)
+ ~> pacman -Sy hunspell
+
+
+ # ...
+ pacman -Sy mingw64/mingw-w64-x86_64-hunspell mingw64/mingw-w64-x86_64-hunspell-en
+   #+END_SRC
+
+   Testing
+   #+BEGIN_SRC sh
+hunspell -d en_US
+
+# write something eg test
+# and then tesst
+
+hunspell -d el_GR
+   #+END_SRC
+
+** Dictionaries
+   oor
+   - https://cgit.freedesktop.org/libreoffice/dictionaries/plain/el_GR/
+
+   - https://raw.githubusercontent.com/LibreOffice/dictionaries/master/el_GR/el_GR.dic
+
+   - git clone https://github.com/wooorm/dictionaries.git
+   - /c/msys64/mingw64/share/hunspell
+     got the folder from =hunspell -D=
+   - mkdir /usr/share/hunspell
+   - cd /usr/share/hunspell
+   - wget https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/el/index.dic -O el_GR.dic
+   - wget https://raw.githubusercontent.com/wooorm/dictionaries/master/dictionaries/el/index.aff -O el_GR.aff
+

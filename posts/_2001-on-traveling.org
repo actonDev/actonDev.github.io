@@ -1,0 +1,97 @@
+#+TITLE: On traveling
+#+SUBTITLE: or on Fear Of Missing Out (FOMO)
+
+Around March of 2019 I had my first trip outside of Europe. While everyone is saying things like "wow" and "how nice", I'm left with a somewhat bitter taste after this trip. This piece of writing is an attempt to put things in order in my head. The problem is that the thoughts on the topic are quite perplexed cause the topic is not a stand-alone matter, but a part of a whole.
+
+* COMMENT notes
+  - started <2020-01-05 Sun>
+* COMMENT On capitalism and hunger
+  The title of this makes me laugh. It's like trying to tell your story to someone and you start like "it all started when I was 4". I think that a quite recent discussion that I had with a friend might serve as an introduction.
+
+  
+* [#A] Fear of missing out (voula says good)
+  Let's start with a definition. According to [[https://en.wikipedia.org/wiki/Fear_of_missing_out][Wikipedia]]
+
+  #+BEGIN_QUOTE
+  Fear of missing out (FOMO) is described as "a pervasive apprehension that others might be having rewarding experiences from which one is absent". This social anxiety is characterized by "a desire to stay continually connected with what others are doing".
+  #+END_QUOTE
+
+  It's the feeling you get when you hear from friends "hey, we did that last night" or "hey, we went to that place the other day". It's taken me a while, but now my response is (or at least I consciously think that it *should* be) "good for you" (with a continuation of the line in the back of my head going like ".. so what?")
+
+* External vs Internal
+  Being the son of my father, it seems that I'm quite biased and leaning towards the views of my father.
+
+* Traveling and consumption
+
+  #+BEGIN_QUOTE
+  What is traveling, if not another form of consumption?
+  -- Me
+  #+END_QUOTE
+
+  I like "quotes". They serve as a great intro, mid-way parenthesis, or outro. However the above is what I said to a friend whey he recommended me that I should take some months off and just travel.
+
+  Some backstory: I'm (happily) unemployed the last ~3 months, and I have this much still in my plan. While from many friends I heard the advice of "great! you should travel!", my idea was to use this time to.. "develop" myself. The urge to quit my job came from the combination of lack of time that I had (work using most of my time.. as it does by definition almost) and the many ideas of things I wanted to do. So many ideas but so little time. Time is running out, going forward and not backwards. So, since I could afford it money-wise, why not just quit?
+
+  #+BEGIN_VERSE
+  In reality what enabled me to quit is the unemployment help. In my case I get an amount which enables me to pay rent & life, and still manage to save like 100 euros per month.
+  #+END_VERSE
+
+  My trip to Thailand cost me around 1500 euros in total (airline tickets & cost there). With that money I could live 2 months without many expenses. So let's weigh the two
+  - 2 weeks of "fun"
+  - 2 months of being "free".
+
+  So let's say one has a way to step out of the "system" and be "free". But you always have necessities and you need to cover them. The idea of work is that it's meant to cover this. Not quite, cause if so, people that were gaining much more could at some point say "fuck it" and no longer work. And enjoy their "freedom".
+  
+  But, apparently, this is not the case. The more you gain you get yourself more expensive hobbies. You get enough to live and a little bit extra? You go by yourself on a trip in your continent. You get plenty more? You travel the world.
+
+  Now, I don't want to make this an attack to people who travel - and there is a great deal of things to gain *internally* from traveling - but I'm trying to see the whole picture. How traveling is being performed in total. This consumeristic style of traveling seems to me wrong, and the thing is that I partook in this. Hence the "bitter aftertaste" of my trip. But hey, if I hadn't done that, I wouldn't end up thinking and writing about this (uggh this is the kind of thought tangles that I always get myself into)
+
+  
+
+* <2020-01-13 Mon> 2nd try
+  I remember a discussion between my mother and father some years ago
+  - M: Why don't we on to a trip?
+  - F: Why should we? We can stay here. What's wrong with here?
+  - M: Ughh...
+
+  Apparently my father's sperm did more than fertilizing my mother's egg. In this post I'm going to try to clarify my own ideas about traveling
+
+** bullets
+   - easiness of traveling.. just cause it's cheap
+     - no special reason to go to that place. go where it's cheap
+     - no background, research
+     - fast food, external stimuli fast food
+   - environmental impact
+   - 
+** TODO On consumption.. wanderlust??
+  
+   #+BEGIN_QUOTE
+   What is traveling, if not another form of consumption?
+   -- Me
+   #+END_QUOTE
+
+   I like "quotes". They serve as a great intro, mid-way parenthesis, or outro. However the above is what I said to a friend when he suggested that I should take some months off and just travel.
+
+   Lately I find myself kind of annoyed when I see tourists on the street. The typical description would be people looking around and up on buildings with the famous generic smile on their faces. I can spot the couples as well the lone travelers, the ones that sit alone in a cafe or a park, usually with a notebook or reading. I've been this guy. Plenty of times. So what's up with this annoyance of mine?
+
+   I can guess that my annoyance has to do with the sense of "wandering around without a purpose".. It's got a buzzword these days, "wanderlust". Now, I don't see anything wrong with that. In fact I can spot plenty of positive things, but this post is gonna be negative. Negative, pessimist, nihilistic and aphoristic. So bear with me.. if you may.
+  
+   The positive thing I spot in the scenario above has to do with the.. easiness of the whole thing. Recently it was Christmas, and I had the chance to go to Greece. I found a cheap flight (like 40 euros) with =EvilAir=; a no-brainer deal. But then I paused and thought: "I was in Greece again this summer - in September actually. Under normal circumstances - even "normal" prices - I wouldn't consider going again. So why go? Just because I found a cheap flight and I have no obligations at the moment?"
+
+   #+BEGIN_VERSE
+   Parenthesis: I'm happily unemployed right now, so I didn't mind going on vacation and so on to move on to such a trip.
+   #+END_VERSE
+
+   Then, my uneasiness started to grow into frustration. Frustration with this latest fashion of "travel, travel and travel some more". If you think about it, traveling even 50 years ago meant saving money, preparing yourself, buying a map, thinking of where you should go, where you should stay. Now you just book a cheap-as-fuck ticket with =EvilAir=, book yourself an =EvilBnB=, turn on your mobile data and wander around. I'm sorry, unknown reader, but this thing is like going to =EvilDonalds= and pushing down your throat burgers of =meat= (?) of ambiguous origin and processing, which is not eating but =consuming= junk food. And it's not traveling (any more) but =consuming=.
+
+** My tipping point
+   Around March of 2019 (at the age of 27), I did my first trip outside Europe, to Thailand. The destination was not carefully chosen, it was just a coincidence. A really good friend's girlfriend, both living in Holland, had to go to Thailand for work. So I would travel from Spain, he from Holland, and we would meet each other in Thailand. It was a good opportunity to 
+   1. See my friend
+   2. Do my first outside-of-Europe trip
+
+   Even though I quite enjoyed the trip, and even took some good life decisions, I got left with a bitter taste after this trip. Why? Cause I went there, to a quite poor country, was living quite well, and was aimlessly roaming around. Thailand as a place and as a culture didn't have any specific importance to me. It was just my place to walk around, "consume" sights, food and alcohol. Hence the imminent self-hatred.
+
+     My trip to Thailand cost me around 1500 euros in total (airline tickets & living cost there). With that money I could have gotten by for 2 months without many expenses. So let's weigh the two
+   - 2 weeks of "fun"
+   - 2 months of being "free". Free as in no work or obligations. The ability to sit quietly and think. Not think about the problems of my boss, but of mine.
+

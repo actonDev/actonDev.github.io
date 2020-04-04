@@ -359,14 +359,19 @@ See https://emacs.stackexchange.com/questions/17946/how-do-i-include-non-code-re
 	      )
 	    ("blog" :components ("posts" "index"))
 	    )))
-    (org-publish-project "blog" t)
+    ;; Note: second parameter is for forcing - republishing previously published post
+    (org-publish-project "blog" nil)
     )
   )
+
+(defun aod.blog/invalidate-timestamps ()
+  (interactive)
+  (org-publish-remove-all-timestamps))
 
   #+END_SRC
 
   #+RESULTS:
-  : aod\.blog/publish
+  : aod\.blog/invalidate-timestamps
 
 * Notes
   #+BEGIN_SRC emacs-lisp

@@ -1,8 +1,10 @@
-#+TITLE: Development, philosophy, procrastination
+#+TITLE: Development, philosophy, writing
 #+SUBTITLE: aka my blog
 #+OPTIONS: num:nil
 
 My (dev nick)name is actondev and this is my blog. Created with emacs.
+
+I keep (almost) all of my personal notes in emacs (using org-mode). Some of these found their way here.
 
 * Sitemap
   #+INCLUDE: "sitemap.org"

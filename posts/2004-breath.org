@@ -1,0 +1,54 @@
+#+TITLE: (Poem) Αναπνοή | Breath (gr|eng)
+#+SUBTITLE: A poem in greek and english. Spanish version pending
+#+DATE: <2020-04-04 Sat>
+
+* Αναπνοή
+  #+BEGIN_VERSE
+  Την τελευταία εβδομάδα η αναπνοή μου ήταν κουρασμένη.
+  Αργόσυρτη κι ασθενική.
+
+  Αλλά εκείνη τη νύχτα ήταν διαφορετική.
+  Δεν καθόμασταν σε παραλία, αλλά ακουγόταν ο ήχος της θάλασσας.
+  Εισπνοή, τα νερά αποτραβιούνται.
+  Εκπνοή, σκάει το κύμα στην ακρογιαλιά, μπροστά στα πόδια μας.
+
+  Και εμείς μιλούσαμε.
+  Μιλούσαμε χωρίς σταματημό.
+  Για την μοναξιά. Για την έμπνευση. Για λάθη που θα ξανακάναμε.
+  Τι ωραία αυτά τα λάθη που μας οδήγησαν σε αυτήν την ακρογιαλιά.
+
+  Και η θάλασσα να φουντώνει.
+  Χύνεται αχαλίνωτη στην ακρογιαλιά.
+  Εμείς βρεχόμαστε, και όλη η φύση τριγύρω ξυπνά από τα κύματα.
+  Όλη η φύση στο πόδι.
+
+  Και η ώρα πέρασε και τα μάτια μας έκλειναν.
+  Και τελικά μας πήρε ο ύπνος.
+  Και η θάλασσα σώπασε.
+  #+END_VERSE
+
+* Breath
+#+BEGIN_VERSE
+  The past week my breath had been kind of tired.
+  Shallow, lacking vigor.
+
+  But that night was different.
+  The sea was nowhere near, but its sound was present.
+  Inhale, the waters withdraw.
+  Exhale, the wave crushes on the seashore, just touching the tip of our toes.
+
+  And we were talking.
+  Talking without stopping.
+  About loneliness. Inspiration. Mistakes we'd gladly repeat.
+  Oh how wonderful, these mistakes. Leading us to this very beach.
+
+  And the sea is growing wild.
+  Waters gushing down the shore.
+  And we're getting wet, and the whole nature awakens by the sound of the waves.
+  The whole nature alert.
+
+  And time went by and our eyes grew tired.
+  And, in the end, we slept.
+  And eventually the sea got quiet.
+  #+END_VERSE
+  
