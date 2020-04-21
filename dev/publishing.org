@@ -187,12 +187,37 @@
 ;; (org-publish-remove-all-timestamps)
 (setq aod.blog/css '("css/default.css" "css/style.css" "css/code.css"))
 (setq aod.blog/disqus-id "actondev-blog")
+(setq aod.blog/partial-header "partials/header.html")
 (setq aod.blog/base-dir (projectile-project-root))
 
 (defun aod.blog/-replace-regexp (regexp replace)
   (beginning-of-buffer)
   (while (re-search-forward regexp nil t)
     (replace-match replace))
+  )
+
+(defun aod.blog/-get-base-dir ()
+  (or aod.blog/base-dir (read-directory-name "Blog base dir: ")))
+
+(defun aod.blog/-header ()
+  "TODO: make it not fail if no partial-header is set or valid"
+  (let ((header-path (expand-file-name
+		      aod.blog/partial-header
+		      (aod.blog/-get-base-dir)
+		      ))
+	(home (concat (file-relative-name
+		       (aod.blog/-get-base-dir)
+		       (file-name-directory (buffer-file-name))
+		       )
+		      "index.html")))
+
+    (with-temp-buffer
+      (insert-file-contents header-path)
+      (beginning-of-buffer)
+      (message (concat "home is " home))
+      (aod.blog/-replace-regexp "{{home}}" home)
+      (buffer-string))
+    )
   )
 
 (defun aod.blog/-title-hook (exporter)
@@ -202,6 +227,7 @@ Default format would show day hour etc.."
 	 (title-string (car (org-publish-find-property (buffer-file-name) :title nil 'html)))
 	 (subtitle-string (car (org-publish-find-property (buffer-file-name) :subtitle nil 'html)))
 	 (preamble (concat
+		    (aod.blog/-header)
 		    "<h1 class='title'>"
 		    title-string
 		    "<br/>"
@@ -214,7 +240,8 @@ Default format would show day hour etc.."
 		    "<span class='subtitle date'>"
 		    date-string
 		    "</span>"
-		    "</h1>")))
+		    "</h1>"))
+	 )
     (setq org-html-preamble preamble)))
 
 (defun aod.blog/-css-include-hook (exporter)
