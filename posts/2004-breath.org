@@ -1,6 +1,8 @@
-#+TITLE: (Poem) Αναπνοή | Breath (gr|eng)
-#+SUBTITLE: A poem in greek and english. Spanish version pending
+#+TITLE: (Poem) Αναπνοή | Breath | Respiración (gr|eng|es)
+#+SUBTITLE: A poem in greek, english and spanish.
 #+DATE: <2020-04-04 Sat>
+
+Gracias a Julia por ayudar con la traducción.
 
 * Αναπνοή
   #+BEGIN_VERSE
@@ -39,7 +41,7 @@
 
   And we were talking.
   Talking without stopping.
-  About loneliness. Inspiration. Mistakes we'd gladly repeat.
+  About loneliness. About inspiration. Mistakes we'd gladly repeat.
   Oh how wonderful, these mistakes. Leading us to this very beach.
 
   And the sea is growing wild.
@@ -52,3 +54,27 @@
   And eventually the sea got quiet.
   #+END_VERSE
   
+* Respiración
+  #+BEGIN_VERSE
+  Durante la semana pasada, mi respiración tenía rasgos de estar cansada.
+  Lenta y sin fuerza.
+
+  Pero esta noche fue diferente.
+  No estábamos sentados en una playa, pero aun así se escuchaba el mar.
+  Inhalar, las aguas se retiran.
+  Exhalar, las olas se rompen en la costa.
+
+  Y hablábamos.
+  Hablábamos sin parar.
+  Sobre soledad. Sobre inspiración. Sobre errores que repetiríamos.
+  ¡Oh, que errores tan maravillosos que nos guiaron aquí, a esta playa!
+
+  Y el mar estaba estaba engrandeciéndose.
+  Aguas irrumpen en la costa.
+  Y nosotros nos mojábamos, y la naturaleza se despertó por el sonido de la olas.
+  Toda la naturaleza en pie.
+
+  El tiempo pasó y nuestros ojos se cerraban.
+  Y, entonces, nos dormimos.
+  Y, al fin, el mar se silenció.
+  #+END_VERSE
