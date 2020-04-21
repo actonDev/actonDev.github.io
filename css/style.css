@@ -1,6 +1,39 @@
 /* @import "org.css"; */
 h1 {
     line-height: 1em;
+    margin-top: 60px;
+}
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    padding-left: 20px;
+}
+.header a {
+    text-decoration: none;
+}
+.header span{
+    margin-left: 20px;
+}
+
+.header .actondev {
+    margin: 0;
+    margin-right: 2px;
+}
+
+.actondev.act {
+    color: #DDD;
+}
+.actondev.on {
+    color: #E61F1A;
+}
+.actondev.dev {
+    color: #34C6CD;
 }
 
 /* li: dash for dialogue style */
@@ -34,7 +67,7 @@ body {
     font-family: monospace;
     max-width: 750px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
     font-size: 14px;
     line-height: 1.4em;
 }
