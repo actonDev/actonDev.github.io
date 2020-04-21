@@ -199,7 +199,7 @@
   "Created this to be able to format the date.
 Default format would show day hour etc.."
   (let* ((date-string (format-time-string "%Y-%m-%d" (org-publish-find-date (buffer-file-name) nil)))
-	 (title-string (org-publish-find-title (buffer-file-name) nil))
+	 (title-string (car (org-publish-find-property (buffer-file-name) :title nil 'html)))
 	 (subtitle-string (car (org-publish-find-property (buffer-file-name) :subtitle nil 'html)))
 	 (preamble (concat
 		    "<h1 class='title'>"
@@ -295,7 +295,6 @@ See https://emacs.stackexchange.com/questions/17946/how-do-i-include-non-code-re
 
 (defun aod.blog/-preview-post ()
   "Exports current post"
-  (interactive)
   (let* ((prog-mode-hook '(rainbow-delimiters-mode))
 	 (post-file (buffer-file-name))
 	 (org-html-head-include-default-style nil)
@@ -389,3 +388,8 @@ See https://emacs.stackexchange.com/questions/17946/how-do-i-include-non-code-re
   Github pages with project (not user?)
   - how to prepend a path in the generated links?
     - https://emacs.stackexchange.com/questions/9807/org-mode-dont-change-relative-urls
+
+
+  editing timestamps (or, invalidate the cache of a certain post - if I updated the title for example)
+  edit the ~/.org-timestamps/posts.cache file
+  

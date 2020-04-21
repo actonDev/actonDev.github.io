@@ -1,0 +1,351 @@
+#+TITLE: (Short story) Travel Camps
+#+SUBTITLE: My first short story. Dedicated to my muse (look: 04 and 21)
+#+DATE: <2020-04-21 Tue>
+
+*  COMMENT notes
+
+** names
+   - Mark (the main character)
+   - Nick (the ..other guy)
+** notes
+   - first thought of describing the life of.. "me" after returning
+     from the trip  to Thailand. But then.. I though.. what if I make
+     the story describing a ... camp person, being there on his 3rd
+     day.. and reading the autobiography of the person ("me") that devised
+     this scheme.
+** dev
+   :PROPERTIES:
+   :header-args: :results silent
+   :END:
+   #+BEGIN_SRC emacs-lisp
+   (save-as "~/nextcloud.XB/X/travel-camps.org")
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+   (save-as "~/Dropbox/Apps/orgzly-actondev/travel-camps.org")
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+   (save-as "w:/dev/notes/writing/travel-camps.org")
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+   (save-as "w:/dev/actondev.github.io/posts/2004-travel-camps.org")
+   #+END_SRC
+
+   
+* Day 3
+  #+BEGIN_QUOTE
+  I just returned home. Oh, how I missed this place. This smell. Old
+  tiles, old furniture, plant soil and food. Here, everything has a
+  purpose. My movements have a meaning.
+
+  My first encounter with another person, talking about my trip was at
+  the office.
+  - Colleague: So.. how was the trip?
+  - Me: It was fine. We had a good time
+
+  That's what you're supposed to say, no? I couldn't really bother
+  going into details. And, more importantly, I didn't know how to
+  express my mind. And on top of that, I didn't know what my mind
+  was thinking exactly.
+
+  - Colleague: Hey, so did u try it?
+  - Me: Huh?
+  - Colleague: The durian fruit.
+  - Me: Ah, no. Didn't occur.
+
+  So what the fuck did I do there? Well.. I did have a good
+  time. Visiting an exotic place.. but.. that's it? My gut is telling
+  me that everything about this trip, the flights, thousands of
+  kilometers flown across the globe using an airplane.. a freaking
+  airplane.. was it all for me to taste some exotic food, take
+  pictures with elephants and.. "have a good time"?
+  #+END_QUOTE
+   
+  #+BEGIN_COMMENT
+  Goes on about the idea that before traveling was harder, had a meaning etc
+  #+END_COMMENT
+
+  He put the book aside. The sun was hot and it was one of those hours
+  that there was nothing to do in the camp. He was just lying in his
+  hammock for the time being. The book was free to borrow from the
+  reception. The writing was sparse, and people were saying that it
+  didn't make much sense. He couldn't really bother with these
+  critiques, he was interested in the psychology of the man. And his
+  own memoirs seemed the best means to that since every piece of
+  article he would read was extremely biased and colored - from either
+  sides.
+
+  #+BEGIN_COMMENT
+  <2020-03-13 Fri> writing blind
+  #+END_COMMENT
+  He got up from the hammock. He wanted to take a stroll around. Since
+  he arrived, it was quite weird actually. The moment he got off the
+  plane, some guards with white whole-body suits and masks welcomed
+  them and guided them to a bus in which they drove for like 30 minutes
+  away from the airport. There they reached the place where, as they
+  told them, they had to stay for a week.
+
+  The place was like some prisons you see on the television or the
+  movies. Cells arranged in a square shape all around the middle
+  common room. There was also a library, and an outside
+  yard. Hmm.. "like" a prison.. seems weird but it feels that it was
+  always like this. Even his parents went through this. But 100 years
+  ago it wasn't like that.
+
+  #+BEGIN_COMMENT
+  hm.. i'm really inconsistent about how this place looks (see the finale) 
+  #+END_COMMENT
+
+  His thoughts were interrupted by a voice coming from a distance 
+
+  - Hey Mark. [He quickened his pace to reach him] It's me, we were
+    sitting next to each other on the plane.
+  - Mark: Oh hey.. uhmm, remind me your name..? Sorry i'm not good at this.
+  - Nick: Well, Nicholas, but you can call me Nick.. So what do you
+    think of this place? It's not bad, right? I mean plenty of people
+    are complaining, like we are prisoners or something. Slaves
+    even. But it's not that bad, right? It's like a free hostel"
+  - M: Hostel? I wouldn't really know, it's my first time traveling
+  - N: Oh.. Well they're places to stay, but mostly just
+    sleep. Cheap ones. You live with like 5 other people in the same
+    room. It's basically just a bed.. A dormitory! That's the
+    word. [Pauses for a little bit] But then where are you staying?
+    You have someone here?
+  - M: Yeah, my uncle lives here. I came to visit him for the summer. He
+    has a place here by the sea. I have a photo somewhere..
+
+  And he showed him the place. A one story house, made mostly out of
+  wood, with a great view to the sea. By the house there were plants,
+  vegetables, and some animals.
+  
+  - N: So this guy is self-sufficient right?
+  - M: Yeah, I guess he is.
+  - N: That's nice.. one of the free ones.
+
+* Day 4
+  #+BEGIN_COMMENT
+  <2020-03-15 Sun 02:55>
+  #+END_COMMENT
+
+  #+BEGIN_QUOTE
+  You see all these people. Walking aimlessly around the
+  city. Meaningless. Generic happy faces looking up. Looking at the
+  trees, the buildings, the fucking pigeons. Everything is looked at
+  with *AWE*. Everything is nice and shiny.
+
+  It's those people you usually have to push. \\
+  Push to pass by. \\
+  You go from point A to point B. \\
+  They roam.
+
+  I wanna say.. focus people! But no. Impossible. They're currently
+  busy consuming. "Gather around, dosage time."
+  
+  Don't interrupt. Must not interrupt them. \\
+  Should not interrupt them.. frowned upon.
+
+  They.. they love us - and fill our pockets- They make our economy
+  run. Cause, god forbid, to have to rely on our own. What fun would
+  that be? That requires work.
+  
+  -----
+  
+  All these ideas were blowing steam in my head. Were keeping the
+  engines running. But I was sitting idle. Idle and burning
+  steam. Quite the internal conflict.
+  #+END_QUOTE
+
+  He let the book rest upon his chest and his mind race.
+
+  "Uhm.. but why would that *awe* be bad? I remember every time I
+  visited my uncle's house at the village I would get this feeling
+  that everything is new. Waiting to be examined. And it's a nice feeling. You
+  feel new yourself. And I feel that I don't follow him."
+
+* Day 5
+  #+BEGIN_COMMENT
+  <2020-03-23 Mon>
+  #+END_COMMENT
+
+  #+BEGIN_QUOTE
+  "So how would you regulate tourism?" was the question to my
+  friend. The friend with whom I went to Thailand. He must think I'm
+  weird. Well of course he *knows* I'm weird, after so many years of
+  us being friends.
+
+  So I went on thinking out loud:
+  - Cause in our current system, the way things get handled to adjust
+    the demand is price. So would you want to adjust tourism, lower it? 
+    You make it more expensive. But.. that doesn't seem
+    fair. I mean it would be fair if the income distribution were
+    without these intense extremes. But.. how do you make
+    traveling.. flat. For all. Like a basic need, such as access to
+    bread or education. But also limit it... How?..
+  - I don't know, man, like make people fill out an application or
+    something. You'd have to write something like "I want to visit
+    India cause I've been fascinated by Buddhism ever since my
+    youth." And then you go on about that and your application gets
+    evaluated. Or yeah.. just make it more expensive, whatever..
+
+  And he laughed. We both laughed. And then we just stared at the
+  reflections of the trees on the water of the lake. We were quite high.
+
+  But something inside me wasn't cutting it. Couldn't pinpoint
+  what or why.. but it was definitely (cause of) something.
+
+  -----
+
+  Time flew. Now I was moving from clerk to a more stable position
+  at the Ministry. So much time passed.. and then it happened. The
+  virus. It spread so quickly and was a global slap in the face. Two
+  months after the first case and the whole population was in
+  quarantine. Staying at home. We stayed there. At first to make it
+  more gradient. And then we almost forgot.
+
+  Frankly for me it wasn't much of a change, since I was already
+  working from home. But after a week I felt it as well. My face
+  missed the sun. The walk in the park. And after the 2nd week, it hit
+  me.
+
+  Global population was moving insanely fast. Faster and faster, the
+  last two centuries. So fast that it was time that we fell and
+  hit our faces. An incident that would otherwise happen in a certain
+  area made it to the rest of the world immediately.
+
+  And that's when I got the idea. Buffers. We need fucking
+  buffers. You want to visit a place? You get hosted in a buffer
+  zone. It can be for a week. A light quarantine. You stay there until
+  you check out. You know what you gain like this?
+  - prevent pandemics
+  - regulate tourism.
+
+  And this is where things started to get tricky.
+  #+END_QUOTE
+
+  #+BEGIN_COMMENT
+  <2020-04-19 Sun>
+  #+END_COMMENT
+  I see... So it's the quarantine that started all this.. Or even
+  before? He said he was already troubled by tourism, so..
+
+  - Nick: [shouts from a distance] Heyy, what's up!? Didn't see you
+    yesterday. How are you?
+  - Mark: Hey man.. I'm good! I was mostly reading
+    yesterday.. and.. thinking. Don't know, my mind is wandering a lot.
+  - N: Yeah, I get you. So.. two more days eh! You excited or what?
+    You get to see your uncle, right?
+  - M: That's right, yeah, my uncle. I'm quite excited, yeah! [he
+    let a slight smirk] Hey, by the way, what are you
+    going to do? You never told me.. and well I never asked you.
+  - N: Well, this trip was quite special. So it's my 3rd one,
+    right. In my first ones I had made a complete schedule. Where to
+    go, what to do. The first one was for scuba diving. Getting the
+    diploma. The second one was about surfing. You see, living in the
+    north, you don't get to do these things. But these two trips were
+    to the east, in the free zones. So I got a month off from work
+    and took the trip. But this one is different.
+  - M: You mean cause of the quarantine?
+  - N: Yeah.. but not only that. I don't know, it's the whole vibe. First I
+    was terrified about the 1 week quarantine. So I felt the urge of
+    planning everything, once again. And I felt the need to do so
+    cause it was going to be 1 week here, so time is precious. The
+    idea of letting a week of my time go like this, felt
+    terrifying. But then.. well let's just say that I had an epiphany
+    that changed my view and.. decided to take this trip as it
+    goes. No plans. That made the whole quarantine thing feel trivial.
+  - M: Huh.. quite a weird idea.. but.. I think, I get what you
+    mean. For me it is the opposite, I know exactly what we're going
+    to do with my uncle, we even had online calls to make our
+    schedule.
+  - N: Well.. whatever suits each person, man. There's no
+    recipe. Don't forget that! [He showed a big smile] Well, see you
+    later, I'm gonna try the yoga class.
+  - Μ: Sure, ciao!.. Hey, one last thing. You ever had like a.. how's
+    the word.. a premonition? Like an idea or sense of something,
+    before something happens?
+  - N: Uhm.. maybe.. I think I get this all the time, I just don't
+    analyze it and.. don't give it any names, heh. See you later.
+
+* Day 6
+  #+BEGIN_COMMENT
+  <2020-04-19 Sun>
+  #+END_COMMENT
+  
+  The sun was hitting his face. Hard. He loved this feeling. Laying
+  there not moving a single finger. Quite slowly he fell asleep...
+
+  His tie seemed crooked so he went on fixing it. One last look in the
+  mirror, one last breath. He exited the bathroom, an envelope in his
+  hand, heading towards the last door at the end of the
+  corridor. Slowly the letters started taking form. "Ministry of
+  tourism".
+  Blank.
+
+  - But that seems quite.. radical, no? Like doing chores in the
+    army.. People won't like it.
+  - Well, sir, my job isn't to propose what people like, and surely
+    they won't like it. But this is what I feel needs to be
+    done. That's the best and my most sincere suggestion that I came
+    up with. It's up to the people of the future to refine it. Also people
+    need to understand that not everything comes for free without making
+    any sacrifice. Cause we had clearly forgotten this.
+
+  His body was covered in sweat and had an aftertaste of sleep in his
+  mouth. He searched for some water and his dream journal. His dream
+  journal was right underneath the book, so he fetched the book and
+  postponed the dream writing. After letting out a big yawn, he went
+  on reading once again.
+
+   #+BEGIN_QUOTE
+   After delivering my proposal, my first draft, a chain of domino
+   reactions took place. First, the Ministry of army wanted to get
+   involved for some reason. They wouldn't let me know why, and never
+   got any explanations. Also, the Ministry of immigration. That's
+   when I realized that my proposal bore awful similarities with
+   refugee camps. What I also noticed is that, while tourists would
+   have to stay in that camp, let's say for a week, immigrants would
+   end up spending months there. That, naturally, made me think
+   of how much time would the upper class end up spending in those
+   buffer zones.. I think you can guess.
+
+   My idea quite back-fired. My first "aha" moment thinking about the
+   buffer zones was that everyone would get to spend the same amount
+   of time. Cause time is something we equally value. Tax-based
+   tourism regulation never clicked with me cause monetary resources
+   are really relative. Time, on the other hand, is a currency we all
+   share.
+
+   It was a moment of realization. Realization of my profound
+   naivety. Took me a while to get over it. And even longer to talk
+   about it. My means of resolution were to write about it. Go through
+   my motives and thoughts. Cause that was the best and my most
+   sincere suggestion that I came up with. It's up to the people of the
+   future to refine it.
+   #+END_QUOTE
+
+   The sun was about to set. He went onto the rooftop of the kitchen,
+   where you could have an unobstructed view of the disappearing sun.
+
+   - Nick: Hey there he is. [He seemed eager to welcome him by his
+     side. He even had a big cushion to share] Last day, tomorrow
+     we're off!
+   - Mark: Yeah had almost forgotten that. [He paused for some moments
+     staring at the sun.] Hey Nick.. Do you ever get the feeling that
+     your time is not exactly your own?
+   - N: Uhm.. in what sense?
+   - M: Not sure yet..
+
+* Day 7
+  #+BEGIN_COMMENT
+  <2020-04-19 Sun>
+  #+END_COMMENT
+  The last day felt like a ritual almost. They packed everything,
+  gathered their bedsheets, dropped them off to the laundry, and went
+  to the medical center for their last check. Everything seemed normal
+  with everyone, so no-one was worried. After doing all the checks,
+  they were asked to pull up their trousers to accommodate the
+  tracking device on their ankles. That was a new measure which they
+  didn't know of, and some of them protested. But, in the end, all of
+  them got out of there with it.

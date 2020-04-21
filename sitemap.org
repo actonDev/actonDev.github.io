@@ -1,6 +1,7 @@
 #+TITLE: 
 
 - posts
+  - [[file:posts/2004-travel-camps.org][(Short story) Travel Camps]]
   - [[file:posts/2004-breath.org][(Poem) Αναπνοή | Breath (gr|eng)]]
   - [[file:posts/1912-plato-cave.org][Plato's cave, Bill Hicks & art in general]]
   - [[file:posts/1912-clojure-reagent-partial.org][ClojureScript tip: about reagent & partials]]
