@@ -1,6 +1,7 @@
 #+TITLE: 
 
 - posts
+  - [[file:posts/20-09-dictator-vs-me-vol1-culture.org][Dictator vs Me (vol 1): Culture]]
   - [[file:posts/2004-travel-camps.org][(Short story) Travel Camps]]
   - [[file:posts/2004-breath.org][(Poem) Αναπνοή | Breath | Respiración (gr|eng|es)]]
   - [[file:posts/1912-plato-cave.org][Plato's cave, Bill Hicks & art in general]]

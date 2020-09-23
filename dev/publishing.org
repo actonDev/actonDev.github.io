@@ -420,3 +420,7 @@ See https://emacs.stackexchange.com/questions/17946/how-do-i-include-non-code-re
   editing timestamps (or, invalidate the cache of a certain post - if I updated the title for example)
   edit the ~/.org-timestamps/posts.cache file
   
+
+  #+BEGIN_SRC sh
+rm ~/.org-timestamps/posts.cache  
+  #+END_SRC
