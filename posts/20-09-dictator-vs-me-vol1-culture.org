@@ -1,10 +1,10 @@
 #+TITLE: Dictator vs Me (vol 1): Culture
-#+SUBTITLE: Fictional discussions between my dictator alter-ergo and.. me
+#+SUBTITLE: Fictional discussions between my dictator-ish alter-ego and.. me
 
 #+DATE: <2020-09-23 Wed>
 
   - D: I feel like banning pop music.
-  - M: Huh? You woke up grumpy.
+  - M: Huh? Somebody woke up grumpy.
   - D: It's reggaeton that makes me grumpy. Up until recently you had
     dumb guys pumping up their music in their car and annoying the
     shit out of residents & people walking by.
